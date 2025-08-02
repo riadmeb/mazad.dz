@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفائزين في المزادات</title>
+    <link rel="stylesheet" href="dashboard-style.css">
+     <link rel="stylesheet" href="winners-list.css">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="user-info">
+            <img src="" alt="صورة المدير الشخصي" class="profile-pic" id="profilePic">
+            <span id="username">اسم المستخدم</span>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="toggleDropdown()">▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <button onclick="logout()">تسجيل الخروج</button>
+                </div>
+            </div>
+        </div>
+        <div class="nav-links">  
+            <a href="winners-list.html" class="auction-button">الفائزون في المزادات</a>
+            <a href="auctions.html" class="auction-button">المزادات</a>
+            <a href="UsersPage.html" class="auction-button">إدارة المستخدمين</a>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="page-title">قائمة الفائزين في المزادات</h2>
+        <div id="winnersContainer" class="winners-container">
+            <!-- سيتم تعبئة بطاقات المزادات هنا من خلال winners-list.js -->
+        </div>
+    </main>
+
+    <!-- سكربت -->
+    <script src="winners-list.js"></script>
+        <script src="dashboard.js"></script>
+
+</body>
+</html>

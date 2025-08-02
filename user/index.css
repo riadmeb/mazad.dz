@@ -1,0 +1,494 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #ffedd3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.logo {
+    height: 80px;
+}
+
+.nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* لجعل زر المزادات في الوسط */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* لضمان وجود فراغ بين العناصر */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px; /* تصغير حجم الاسم واللقب */
+}
+
+.nav-button {
+    
+    text-decoration: none;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.auction-button {
+    background-color: #5c6259; /* لون مميز لزر المزادات */
+    color: white;
+    border-radius: 25px;
+}
+
+.auction-button:hover {
+    background-color: #cc8800; /* تغيير اللون عند المرور */
+}
+
+.nav-button:hover {
+    background-color: #007bff;
+    color: white;
+    border-radius: 25px;
+}
+
+.user-icon {
+    height: 40px; /* تكبير حجم صورة المستخدم */
+    width: 40px;  /* لضمان المحاذاة الصحيحة */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.notification-icon {
+    height: 20px; /* تصغير حجم أيقونة التنبيهات */
+    width: 20px;  /* لضمان المحاذاة الصحيحة */
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+.dropdown-menu, .notifications-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+}
+
+.dropdown-menu {
+    top: 40px; /* لضبط الموضع أسفل صورة المستخدم */
+    left: 0; /* محاذاة للقائمة ضمن العنصر */
+    transform: none; /* إزالة التحويل لضمان الموضع الصحيح */
+}
+
+.dropdown-menu a, .notifications-menu p {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu a:hover, .notifications-menu p:hover {
+    background-color: #f4f4f4;
+}
+
+.dropdown-menu .my-auctions {
+    color: #2870a7; /* لون مميز لزر مزاداتي */
+    font-weight: bold;
+}
+
+.dropdown-menu .logout {
+    color: red;
+    font-weight: bold;
+}
+
+.user-icon-container {
+    position: relative;
+}
+
+.notifications-container {
+    position: relative;
+}
+
+/* تنسيق منطقة الإعلانات */
+.ad-container {
+    position: relative;
+    max-width: 99%; /* تصغير عرض الشريط الإعلاني */
+    height: 270px; /* ضبط ارتفاع الشريط الإعلاني */
+    margin: 25px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* لمحاذاة النص في الوسط */
+}
+
+.ad-banner {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 1px;
+    border-bottom: 1px solid #ddd;
+}
+
+.ad-slide {
+    display: none;
+    text-align: center;
+    height: 99%; /* ضبط ارتفاع الشريط الإعلاني */
+}
+
+.ad-slide img {
+    width: 99%; /* ضبط العرض ليتناسب مع الإطار */
+    height: 99%; /* ضبط الارتفاع ليتناسب مع الإطار */
+    border-radius: 10px;
+}
+
+
+.ad-container .prev, .ad-container .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+    border-radius: 0 3px 3px 0;
+    -webkit-user-select: none; /* الدعم لسفاري */
+    user-select: none;  /* الدعم لجميع المتصفحات */
+}    
+
+
+.ad-container .prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.ad-container .next {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.ad-container .prev:hover, .ad-container .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+/* تنسيقات القسم الأيسر في الرأس */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto; /* لتمرير العناصر إلى اليسار */
+}
+
+/* تنسيقات القسم الأوسط في الرأس */
+.nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+/* تنسيق منطقة المزادات */
+.auctions-container {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px; /* تحديد عرض أقصى للحاوية */
+}
+
+.auctions-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.auctions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* المسافة بين البطاقات */
+    justify-content: flex-start; /* لمحاذاة البطاقات لليمين */
+}
+
+.auction-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: calc(33.333% - 20px); /* لضمان أن كل بطاقة تأخذ ثلث العرض */
+    box-sizing: border-box; /* لضمان عدم تجاوز البطاقات العرض */
+    margin-bottom: 20px; /* لإضافة مساحة بين الصفوف */
+}
+
+.auction-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.auction-card h3 {
+    margin-top: 0;
+    font-size: 18px; /* حجم خط أصغر للعناوين */
+    color: #333;
+}
+
+.auction-images {
+    position: relative; /* لضبط أزرار التنقل */
+    display: flex;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.auction-slide {
+    display: none;
+    width: 100%;
+    height: 150px; /* ضبط الارتفاع ليتناسب مع المزادات */
+}
+
+.auction-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* احتواء الصورة داخل الإطار */
+    border-radius: 5px;
+}
+
+.auction-images .prev-slide, .auction-images .next-slide {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+    border-radius: 0 3px 3px 0;
+    -webkit-user-select: none; /* الدعم لسفاري */
+    user-select: none;  /* الدعم لجميع المتصفحات */
+}
+
+.auction-images .prev-slide {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.auction-images .next-slide {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.auction-images .prev-slide:hover, .auction-images .next-slide:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.auction-card p {
+    margin: 5px 0;
+    font-size: 12px; /* حجم خط أصغر للنصوص */
+    color: #666;
+}
+
+.bid-button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px; /* حجم خط أصغر للزر */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bid-button:hover {
+    background-color: #0056b3;
+}
+
+#view-more-auctions {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #567263;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#view-more-auctions:hover {
+    background-color: #73889d;
+}
+/* تنسيق النافذة المنبثقة */
+.modal {
+    display: none; /* مخفي افتراضيًا */
+    position: fixed; /* ثابت */
+    z-index: 1; /* فوق جميع المحتويات الأخرى */
+    left: 0;
+    top: 0;
+    width: 100%; /* عرض كامل الشاشة */
+    height: 100%; /* ارتفاع كامل الشاشة */
+    overflow: auto; /* التمرير عند الضرورة */
+    background-color: rgb(0,0,0); /* لون الخلفية */
+    background-color: rgba(0,0,0,0.4); /* لون الخلفية مع الشفافية */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto; /* 15% من الأعلى وأسفل، ومركزي أفقيًا */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* عرض 80% من الشاشة */
+    max-width: 500px; /* عرض أقصى */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover, .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* إضافات لتنسيق منطقة المزادات كما هو موضح سابقًا */
+/* تنسيق منطقة البحث */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.search-container input,
+.search-container select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-modal-content {
+    margin: auto;
+    display: block;
+    max-width: 85vw;
+    max-height: 85vh;
+}
+.image-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.hidden {
+    display: none !important;
+}
+
+/* --- للشاشات المتوسطة (مثل الأجهزة اللوحية) --- */
+@media (max-width: 992px) {
+    /* نجعل بطاقات المزادات تظهر في عمودين بدلاً من ثلاثة */
+    .auction-card {
+        width: calc(50% - 20px);
+    }
+
+    /* تعديل الهيدر ليناسب الشاشات الأصغر */
+    header nav {
+        flex-wrap: wrap; /* السماح للعناصر بالالتفاف */
+        justify-content: center;
+    }
+}
+
+
+/* --- للشاشات الصغيرة (مثل الهواتف) --- */
+@media (max-width: 768px) {
+    /* نجعل كل بطاقة مزاد تأخذ العرض الكامل للشاشة */
+    .auction-card {
+        width: 100%;
+    }
+
+    /* تعديل الهيدر ليظهر بشكل أفضل على الهواتف */
+    header {
+        flex-direction: column; /* ترتيب العناصر فوق بعضها */
+        gap: 10px;
+    }
+
+    .nav-center, .nav-right, nav {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .nav-button {
+        width: 80%;
+        text-align: center;
+    }
+
+    /* تعديل منطقة البحث لتكون عمودية */
+    .search-container {
+        flex-direction: column;
+    }
+    .search-container input,
+    .search-container select {
+        width: 90%;
+    }
+}

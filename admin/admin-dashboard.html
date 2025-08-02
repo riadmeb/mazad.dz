@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم</title>
+<link rel="stylesheet" href="/admin/dashboard-style.css">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="user-info">
+            <img src="" alt="صورة المدير الشخصي" class="profile-pic" id="profilePic">
+            <span id="username">اسم المستخدم</span>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="toggleDropdown()">▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <button onclick="logout()">تسجيل الخروج</button>
+                </div>
+            </div>
+        </div>
+        <!-- إضافة زر المزادات -->
+        <div class="nav-links">  
+            <a href="winners-list.html" class="auction-button">الفائزون في المزادات</a>
+            <a href="auctions.html" class="auction-button">المزادات</a>
+            <a href="UsersPage.html" class="auction-button">إدارة المستخدمين</a>
+        </div>
+    </header>
+    <main>
+        <div class="main-content">
+            <div class="statistics-container">
+                <h2>الإحصائيات العامة</h2>
+                <p>عدد المستخدمين المسجلين: <span id="totalUsers">0</span></p>
+                <p>عدد المزادات الجارية حاليًا: <span id="activeAuctions">0</span></p>
+                <p>عدد المزادات المكتملة والمنتهية: <span id="completedAuctions">0</span></p>
+                <p>عدد المزادات التي لم تبدأ: <span id="pendingAuctions">0</span></p>
+                <p>إجمالي عدد المزادات: <span id="totalAuctions">0</span></p>
+                <p>عدد جميع المزايدين: <span id="totalBidders">0</span></p>
+            </div>
+
+            <div class="add-auction-container">
+                <h2>إضافة مزاد جديد</h2>
+                <form id="addAuctionForm" method="POST" enctype="multipart/form-data">
+                    <label for="auction_type_id">: معرف نوع المزاد </label>
+                    <select id="auction_type_id" name="auction_type_id" required>
+                        <!-- سيتم ملء الخيارات هنا باستخدام JavaScript -->
+                    </select>
+                    
+                    <label for="title">اسم المزاد:</label>
+                    <input type="text" id="title" name="title" required>
+                    
+                    <label for="description">:وصف المزاد</label>
+                    <textarea id="description" name="description" required></textarea>
+                    
+                    <label for="start_price">: السعر الابتدائي (دج)</label>
+                    <input type="number" id="start_price" name="start_price" required>
+                    
+                    <label for="start_time">: وقت بدأ المزاد</label>
+                    <input type="datetime-local" id="start_time" name="start_time" required>
+                    
+                    <label for="end_time">: وقت انتهاء المزاد</label>
+                    <input type="datetime-local" id="end_time" name="end_time" required>
+                    
+                    <label for="wilaya">: الولاية</label>
+                    <input type="text" id="wilaya" name="wilaya" required>
+                    
+                    <label for="commune">: البلدية</label>
+                    <input type="text" id="commune" name="commune" required>
+                    
+                    <label for="images">: إضافة صور</label>
+                   <input type="file" id="images" name="images" accept="image/*" multiple required>
+                    
+                    <button type="submit">إضافة مزاد</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="add-auction.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+.user-lists {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* إضافة مسافة بين القوائم */
+}
+
+.user-list {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.user-list h3 {
+    text-align: right;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.user-list ul {
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0;
+    background-color: #fff;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.user-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    position: relative;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    direction: rtl;
+    gap: 10px;
+}
+
+.user-list li:last-child {
+    border-bottom: none;
+}
+
+.user-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.user-label {
+    background-color: #007bff;
+    color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.user-name {
+    background-color: #28a745;
+    color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.user-details-popup {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #ffffff;
+    width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: Arial, sans-serif;
+    z-index: 10;
+}
+
+/* ✅ 1. الوضع الافتراضي: النافذة تظهر على يسار اسم المستخدم (للقوائم اليمنى والوسطى) */
+#pendingList li .user-details-popup,
+#approvedList li .user-details-popup {
+    left: 105%; 
+}
+
+/* ✅ 2. الوضع الخاص: النافذة تظهر على يمين اسم المستخدم (للقائمة اليسرى فقط) */
+#rejectedList li .user-details-popup {
+    right: 105%;
+}
+
+
+.user-list li:hover .user-details-popup {
+    display: block;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.button-container button {
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: opacity 0.3s;
+}
+
+.button-container button:hover {
+    opacity: 0.8;
+}
+
+.button-container .approve-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.button-container .reject-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.button-container .delete-button {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* ======================================================= */
+/* ✅  الكود الجديد الخاص بالصورة الدائرية  ✅      */
+/* ======================================================= */
+
+.popup-profile-pic {
+    width: 60px; /* تحديد عرض صغير للصورة */
+    height: 60px; /* تحديد ارتفاع مطابق للعرض لجعلها مربعة */
+    border-radius: 50%; /* هذا هو السطر الذي يجعل الصورة دائرية */
+    object-fit: cover; /* يضمن أن الصورة تملأ الإطار الدائري دون تشويه */
+    border: 2px solid #ddd; /* إضافة إطار رمادي خفيف حول الصورة */
+    display: block; /* لضمان توسط الصورة بشكل صحيح */
+    margin: 10px auto; /* إضافة هوامش وتوسيط الصورة أفقياً */
+}

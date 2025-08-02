@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التسجيل</title>
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="footer.css"> <!-- تضمين ملف CSS الخاص بالتذييل -->
+</head>
+<body dir="rtl">
+    <header>
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo">
+        <nav>
+            <a href="index.html" class="nav-button">الرئيسية</a>
+            <a href="login.html" class="nav-button">تسجيل الدخول</a>
+        </nav>
+    </header>
+    <div class="register-container">
+        <h2>التسجيل</h2>
+        <form id="registerForm">
+            <label for="username">اسم المستخدم:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="firstName">الاسم:</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <label for="lastName">اللقب:</label>
+            <input type="text" id="lastName" name="lastName" required>
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="birthDate">تاريخ الميلاد:</label>
+            <input type="date" id="birthDate" name="birthDate" required>
+            <label for="password">كلمة المرور:</label>
+            <input type="password" id="password" name="password" required>
+            <label for="confirmPassword">إعادة كتابة كلمة المرور:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <label for="phoneNumber">رقم الهاتف:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber">
+            <label for="birthPlace">مكان الميلاد:</label>
+            <input type="text" id="birthPlace" name="birthPlace" required>
+            <label for="wilaya">ولاية الإقامة:</label>
+            <input type="text" id="wilaya" name="wilaya" required>
+            <label for="commune">بلدية الإقامة:</label>
+            <input type="text" id="commune" name="commune" required>
+            <label for="profilePicture">صورة شخصية:</label>
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+            <img id="profilePicturePreview" src="#" alt="معاينة الصورة">
+            <button type="submit">إنشاء حساب</button>
+        </form>
+        <p>لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+    </div>
+    <!-- تضمين التذييل -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+    <script src="register.js"></script>
+</body>
+</html>

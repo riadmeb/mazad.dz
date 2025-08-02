@@ -1,0 +1,438 @@
+/* النمط الأساسي */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    direction: rtl; /* لعرض المحتوى من اليمين إلى اليسار */
+}
+
+/* الرأس */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-content button:hover {
+    background-color: #ddd;
+}
+
+.user-info:hover .dropdown-content {
+    display: block;
+}
+
+/* المحتوى الرئيسي */
+main {
+    padding: 20px;
+}
+
+.auction-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* المسافة بين الإطارات */
+    justify-content: flex-start; /* لمحاذاة الإطارات من اليمين إلى اليسار */
+}
+
+/* تنسيق أطر المزادات */
+.auction-frame {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%; /* لضمان ظهور 3 إطارات في كل صف */
+    box-sizing: border-box;
+    overflow: hidden; /* إخفاء الفائض */
+}
+
+.auction-header h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px; /* تصغير حجم العنوان */
+}
+
+.auction-header p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.auction-details {
+    margin-top: 10px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 14px; /* تصغير حجم النص */
+}
+
+.hidden {
+    display: none;
+}
+
+/* تنسيق زر المزادات */
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.auction-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+.auction-button:hover {
+    background-color: #45a049;
+}
+
+/* تنسيق صور المزادات مع إمكانية التصفح */
+.auction-images {
+    position: relative;
+    width: 100%;
+    height: 150px; /* تصغير حجم الإطار لعرض الصور */
+    overflow: hidden;
+}
+
+.auction-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* لضمان عرض الصورة بالكامل */
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* لضمان توسيط الصورة داخل الإطار */
+}
+
+.auction-images img.active {
+    display: block;
+}
+
+.navigation-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.navigation-buttons button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 5px; /* تقليل حجم الأزرار */
+    cursor: pointer;
+}
+
+.navigation-buttons button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* نافذة تكبير الصورة */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* تنسيق شريط البحث */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.search-bar input,
+.search-bar select,
+.search-bar button {
+    margin: 0 5px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.search-bar button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search-bar button:hover {
+    background-color: #45a049;
+}
+
+/* إخفاء العناصر المرئية فقط للأغراض المساعدة */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* تنسيق نموذج التعديل */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* تنسيق عام لمربع التعديل */
+#editModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* خلفية سوداء نصف شفافة */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px; /* زوايا مدورة */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-buttons {
+    text-align: right;
+}
+
+.form-buttons button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+.form-buttons button:last-child {
+    background-color: #dc3545;
+}
+
+.form-buttons button:hover {
+    opacity: 0.8;
+}
+
+/* تنسيق الصور الحالية */
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.current-image {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    width: 100px; /* جعل الصور صغيرة */
+    height: auto;
+}
+
+.current-image img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd; /* إطار خفيف حول الصورة */
+    border-radius: 5px; /* زوايا مدورة للصورة */
+}
+
+.delete-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+/* تنسيق زر حذف المزاد */
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.delete-button:hover {
+    opacity: 0.8;
+}
+
+.auction-frame {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    position: relative;
+}

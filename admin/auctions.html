@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جميع المزادات</title>
+    <link rel="stylesheet" href="auctions-style.css">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="user-info">
+            <img src="" alt="صورة المدير الشخصي" class="profile-pic" id="profilePic">
+            <span id="username">اسم المستخدم</span>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="toggleDropdown()">▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <button onclick="logout()">تسجيل الخروج</button>
+                </div>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="admin-dashboard.html" class="auction-button">الصفحة الرئيسية</a>
+        </div>
+    </header>
+    <div class="search-bar">
+        <label for="searchInput" class="visually-hidden">بحث</label>
+        <input type="text" id="searchInput" placeholder="بحث بالرقم أو الاسم...">
+        
+        <label for="auctionTypeFilter" class="visually-hidden">نوع المزاد</label>
+        <select id="auctionTypeFilter" title="اختر نوع المزاد">
+            <option value="">اختر نوع المزاد</option>
+            <!-- الأنواع سيتم إضافتها بواسطة JavaScript -->
+        </select>
+        
+        <label for="auctionStatusFilter" class="visually-hidden">حالة المزاد</label>
+        <select id="auctionStatusFilter" title="اختر حالة المزاد">
+            <option value="">اختر حالة المزاد</option>
+            <option value="جار الآن">جار الآن</option>
+            <option value="لم يبدأ">لم يبدأ</option>
+            <option value="منتهي">منتهي</option>
+        </select>
+        
+        <button onclick="filterAuctions()">بحث</button>
+    </div>
+    <main>
+        <div class="main-content auction-list" id="auctions-container">
+            <!-- سيتم إضافة إطارات المزادات هنا بواسطة JavaScript -->
+        </div>
+    </main>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <button class="prev-button" onclick="showPrevModalImage()">&#10094;</button>
+            <img id="expandedImg" alt="صورة مكبرة">
+            <button class="next-button" onclick="showNextModalImage()">&#10095;</button>
+        </div>
+    </div>
+
+    <!-- نموذج تعديل المزاد -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeEditModal">&times;</span>
+            <h2>تعديل المزاد</h2>
+            <form id="editAuctionForm">
+                <label for="editTitle">عنوان المزاد:</label>
+                <input type="text" id="editTitle" name="title" required>
+                <label for="editDescription">وصف المزاد:</label>
+                <textarea id="editDescription" name="description" required></textarea>
+                <label for="editStartPrice">السعر الابتدائي:</label>
+                <input type="number" id="editStartPrice" name="start_price" required>
+                <label for="editType">نوع المزاد:</label>
+                <select id="editType" name="type" required></select>
+                <label for="editStartTime">وقت البدء:</label>
+                <input type="datetime-local" id="editStartTime" name="start_time" required>
+                <label for="editEndTime">وقت الانتهاء:</label>
+                <input type="datetime-local" id="editEndTime" name="end_time" required>
+                <label for="editWilaya">الولاية:</label>
+                <input type="text" id="editWilaya" name="wilaya" required>
+                <label for="editCommune">البلدية:</label>
+                <input type="text" id="editCommune" name="commune" required>
+                <label for="editImages">الصور:</label>
+                <input type="file" id="editImages" name="images" multiple>
+                <div id="currentImages" class="image-container">
+                    <!-- سيتم عرض الصور الحالية هنا بواسطة JavaScript -->
+                </div>
+                <div class="form-buttons">
+                    <button type="button" id="saveButton">حفظ التعديلات</button>
+                    <button type="button" id="cancelButton">إلغاء</button>
+                </div>
+            </form>  
+        </div>
+    </div>
+
+    <script src="auctions.js"></script>
+</body>
+</html>

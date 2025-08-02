@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="footer.css" />
+</head>
+
+<body dir="rtl">
+    <!-- رأس الصفحة للزوار غير المسجلين -->
+    <header id="guest-header" class="">
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo" />
+        <nav class="nav-center">
+            <a href="allauctions.html" class="nav-button auction-button">المزادات</a>
+        </nav>
+        <nav class="nav-right">
+            <a href="register.html" class="nav-button">تسجيل</a>
+            <a href="login.html" class="nav-button">تسجيل الدخول</a>
+        </nav>
+    </header>
+
+    <!-- رأس الصفحة للمستخدمين المسجلين -->
+    <header id="user-header" class="">
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo" />
+        <nav class="nav-center">
+            <a href="allauctions.html" class="nav-button auction-button">المزادات</a>
+        </nav>
+        <nav>
+            <div class="notifications-container">
+                <img
+                    id="notifications-icon"
+                    src="images/bell-ring.png"
+                    alt="رمز التنبيهات"
+                    class="notification-icon"
+                />
+                <div class="notifications-menu hidden" id="notificationsMenu">
+                    <!-- الرسائل سيتم استيرادها هنا -->
+                    <p>لا توجد رسائل جديدة</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <span id="user-name"></span>
+            </div>
+            <div class="user-icon-container">
+                <img
+                    id="user-profile-picture"
+                    src=""
+                    alt="صورة المستخدم"
+                    class="user-icon"
+                />
+                <div class="dropdown-menu hidden" id="dropdownMenu">
+                    <a href="my-auctions.html" class="my-auctions">مزاداتي</a>
+                    <a href="settings.html">إعدادات الحساب</a>
+                    <a href="logout.html" class="logout">تسجيل الخروج</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- منطقة الإعلانات -->
+    <div class="ad-container">
+        <div class="ad-banner">مساحة إعلانية</div>
+        <div class="ad-slide">
+            <img src="images-publicitte\ChatGPT Image May 22, 2025, 07_01_28 PM (2) (1).png" alt="إعلان 1" />
+        </div>
+        <div class="ad-slide">
+            <img src="images-publicitte\images.png" alt="إعلان 2" />
+        </div>
+       
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <!-- منطقة البحث -->
+    <div class="search-container">
+        <input
+            type="text"
+            id="searchQuery"
+            placeholder="ابحث عن مزاد برقم أو اسم المزاد..."
+        />
+        <label for="auctionTypeFilter"> نوع المزاد: </label>
+        <select id="auctionTypeFilter" aria-label="نوع المزاد">
+            <option value="">جميع الأنواع</option>
+            <!-- الأنواع ستتم إضافتها ديناميكيًا من قاعدة البيانات -->
+        </select>
+        <button onclick="searchAuctions()">بحث</button>
+    </div>
+
+    <!-- منطقة المزادات -->
+    <div class="auctions-container">
+        <h2>المزادات النشطة</h2>
+        <div id="auctions-list" class="auctions-list"></div>
+        <a href="allauctions.html" id="view-more-auctions" class="view-more-button"
+            >عرض المزيد من المزادات</a
+        >
+    </div>
+<div id="enlargedImageModal" class="image-modal hidden">
+    <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+    <img class="image-modal-content" id="enlargedImg">
+</div>
+    <!-- نافذة منبثقة لرسالة التنبيه -->
+    <div id="alertModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeAlertModal()">&times;</span>
+            <p>يجب تسجيل الدخول أو إنشاء حساب للتمكن من المزايدة.</p>
+        </div>
+    </div>
+
+    <!-- نافذة الشروط للموافقة قبل المزايدة -->
+    <div id="termsModal" class="modal hidden">
+        <div class="modal-content" style="direction: rtl;">
+            <span class="close-button" onclick="closeTermsModal()">&times;</span>
+            <h3>📄 شروط المشاركة في المزاد العلني</h3>
+            <ul style="font-size: 14px; padding-right: 20px;">
+                <li>يُعتبر كل مشارك في المزاد مطّلعًا وموافقًا على الشروط التالية.</li>
+                <li>البيع يتم على الحالة التي عليها العتاد وبدون أي ضمان.</li>
+                <li>
+                    مدة كل مزاد محددة بـ 15 دقيقة، وفي حال تقديم عرض خلال الدقيقة
+                    الأخيرة، يُضاف تلقائيًا 5 دقائق إضافية.
+                </li>
+                <li>
+                    يلتزم المزايد الفائز بتسديد كامل مبلغ البيع في مدة لا تتجاوز ثمانية (8) أيام من تاريخ فوزه بالمزاد.
+                </li>
+                <li>
+                    <strong style="color: red;">
+                        في حال عدم دفع المبلغ في الآجال المحددة، يُعتبر المزايد في حالة تخلف، وتُطبق عليه الإجراءات التالية:
+
+                    </strong>
+                </li>
+                <ul style="margin-right: 20px;">
+                    <li>إعادة عرض الحصة ويتحمل المزايد المتخلف الفارق والمصاريف.</li>
+                    <li>الإدراج ضمن قائمة المزايدين المحظورين.</li>
+                    <li>المتابعة القضائية وغرامة بـ 10% من مبلغ البيع.</li>
+                </ul>
+                <li>
+                    بالموافقة على هذه الشروط، يُقرّ المشارك بتحمّله كامل المسؤولية
+                    القانونية.
+                </li>
+            </ul>
+            <label style="display: block; margin-top: 10px;">
+                <input type="checkbox" id="agreeTerms" /> أوافق على الشروط والأحكام
+            </label>
+            <br />
+            <button
+                onclick="confirmBid()"
+                style="
+                    padding: 8px 16px;
+                    background-color: #007bff;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                "
+            >
+                موافقة والمواصلة
+            </button>
+        </div>
+    </div>
+<!-- نافذة تنبيه: يجب الموافقة على الشروط -->
+<div id="termsAlertModal" class="modal hidden">
+  <div class="modal-content" style="direction: rtl;">
+    <span class="close-button" onclick="closeTermsAlertModal()">&times;</span>
+    <p style="font-size: 16px; text-align: center;">
+      يجب الموافقة على الشروط للمتابعة.
+    </p>
+       <div id="enlargedImageModal" class="image-modal hidden">
+        <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+        <img class="image-modal-content" id="enlargedImg">
+    </div>
+
+  </div>
+</div>
+
+   
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then((response) => response.text())
+            .then((data) => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>مزاداتي - المزادات التي شاركت فيها</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="bid.css" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="allauctions.css" />
+        <link rel="stylesheet" href="my-auctions.css" />
+
+
+
+</head>
+<body>
+
+    <!-- رأس الصفحة -->
+    <header id="user-header" class="">
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo" />
+        <nav class="nav-center">
+            <a href="index.html" class="nav-button auction-button">الصفحة الرئيسية</a>
+            <a href="allauctions.html" class="nav-button auction-button">المزادات</a>
+        </nav>
+        <nav>
+            <div class="notifications-container">
+                <img id="notifications-icon" src="images/bell-ring.png" alt="رمز التنبيهات" class="notification-icon" />
+                <div class="notifications-menu hidden" id="notificationsMenu">
+                    <p>لا توجد رسائل جديدة</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <span id="user-name"></span>
+            </div>
+            <div class="user-icon-container" style="position: relative;">
+                <img id="user-profile-picture" src="" alt="صورة المستخدم" class="user-icon" />
+                <div class="dropdown-menu hidden" id="dropdownMenu">
+                    <a href="settings.html">إعدادات الحساب</a>
+                    <a href="#" class="logout">تسجيل الخروج</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- محتوى المزادات -->
+    <main class="main-container">
+
+        <!-- تبويبات التصنيف -->
+        <div id="auction-tabs" class="tabs">
+            <button class="tab-button active" data-tab="won">🏆 فزت بها</button>
+            <button class="tab-button" data-tab="ongoing">⏳ الجارية الآن</button>
+            <button class="tab-button" data-tab="lost">❌ المنتهية</button>
+        </div>
+
+        <!-- الأقسام حسب نوع المزاد -->
+        <div id="my-auctions-container">
+            <section id="won-section" class="auction-section active"></section>
+            <section id="ongoing-section" class="auction-section hidden"></section>
+            <section id="lost-section" class="auction-section hidden"></section>
+        </div>
+    <div id="termsModal" class="modal hidden">
+            <div class="modal-content" style="direction: rtl;">
+                <span class="close-button" onclick="closeTermsModal()">&times;</span>
+                <h3>📄 شروط المشاركة في المزاد العلني</h3>
+                <ul style="font-size: 14px; padding-right: 20px;">
+                    <li>يُعتبر كل مشارك في المزاد مطّلعًا وموافقًا على الشروط التالية.</li>
+                    <li>البيع يتم على الحالة التي عليها العتاد وبدون أي ضمان.</li>
+                    <li>
+                        مدة كل مزاد محددة بـ 15 دقيقة، وفي حال تقديم عرض خلال الدقيقة
+                        الأخيرة، يُضاف تلقائيًا 5 دقائق إضافية.
+                    </li>
+                    <li>
+                        يلتزم المزايد الفائز بتسديد كامل مبلغ البيع في مدة لا تتجاوز ثمانية (8) أيام من تاريخ فوزه بالمزاد.
+                    </li>
+                    <li>
+                        <strong style="color: red;">
+                            في حال عدم دفع المبلغ في الآجال المحددة، يُعتبر المزايد في حالة تخلف، وتُطبق عليه الإجراءات التالية:
+                        </strong>
+                    </li>
+                    <ul style="margin-right: 20px;">
+                        <li>إعادة عرض الحصة ويتحمل المزايد المتخلف الفارق والمصاريف.</li>
+                        <li>الإدراج ضمن قائمة المزايدين المحظورين.</li>
+                        <li>المتابعة القضائية وغرامة بـ 10% من مبلغ البيع.</li>
+                    </ul>
+                    <li>
+                        بالموافقة على هذه الشروط، يُقرّ المشارك بتحمّله كامل المسؤولية
+                        القانونية.
+                    </li>
+                </ul>
+                <label style="display: block; margin-top: 10px;">
+                    <input type="checkbox" id="agreeTerms" /> أوافق على الشروط والأحكام
+                </label>
+                <br />
+                <button onclick="confirmBid()">موافقة والمواصلة</button>
+            </div>
+        </div>
+
+        <!-- نافذة تنبيه: يجب الموافقة على الشروط -->
+        <div id="termsAlertModal" class="modal hidden">
+          <div class="modal-content" style="direction: rtl;">
+            <span class="close-button" onclick="closeTermsAlertModal()">&times;</span>
+            <p style="font-size: 16px; text-align: center;">
+              يجب الموافقة على الشروط للمتابعة.
+            </p>
+          </div>
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <!-- ملف جافاسكريبت الخاص بالمزادات -->
+    <script src="my-auctions.js"></script>
+
+    <!-- سكريبت بسيط لتفعيل التبويبات -->
+    <script>
+        document.querySelectorAll(".tab-button").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+                document.querySelectorAll(".auction-section").forEach(section => section.classList.add("hidden"));
+
+                button.classList.add("active");
+                const tab = button.getAttribute("data-tab");
+                document.getElementById(tab + "-section").classList.remove("hidden");
+                document.getElementById(tab + "-section").classList.add("active");
+            });
+        });
+    </script>
+
+</body>
+</html>

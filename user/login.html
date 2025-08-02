@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+<body dir="rtl">
+    <header>
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo">
+        <nav>
+            <a href="index.html" class="nav-button">الرئيسية</a>
+            <a href="register.html" class="nav-button">تسجيل</a>
+        </nav>
+    </header>
+    <div class="login-container">
+        <h2>تسجيل الدخول</h2>
+        <form id="loginForm">
+            <label for="identifier">اسم المستخدم أو البريد الإلكتروني:</label>
+            <input type="text" id="identifier" name="identifier" required>
+            <label for="password">كلمة المرور:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+        <div id="messageBox" class="alert"></div> <!-- عنصر لعرض الرسائل -->
+        <p>لا تملك حساب؟ <a href="register.html">تسجيل</a></p>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+    <script src="login.js"></script>
+</body>
+</html>

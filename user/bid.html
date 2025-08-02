@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المزايدة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="bid.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+<body dir="rtl">
+    <!-- رأس الصفحة للمستخدمين المسجلين -->
+    <header id="user-header" class="">
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo">
+        <nav class="nav-center">
+            <a href="allauctions.html" class="nav-button auction-button">المزادات</a>
+            <a href="index.html" class="nav-button auction-button">الصفحة الرئيسية</a>
+        </nav>
+        <nav>
+            <div class="notifications-container">
+                <img id="notifications-icon" src="images/bell-ring.png" alt="رمز التنبيهات" class="notification-icon">
+                <div class="notifications-menu hidden" id="notificationsMenu">
+                    <!-- الرسائل سيتم استيرادها هنا -->
+                    <p>لا توجد رسائل جديدة</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <span id="user-name"></span>
+                <input type="hidden" id="user-id" value="">  <!-- سيتم ملء معرف المستخدم تلقائيًا -->
+            </div>
+            <div class="user-icon-container">
+                <img id="user-profile-picture" src="" alt="صورة المستخدم" class="user-icon">
+                <div class="dropdown-menu hidden" id="dropdownMenu">
+                    <a href="my-auctions.html" class="my-auctions">مزاداتي</a>
+                    <a href="settings.html">إعدادات الحساب</a>
+                    <a href="logout.html" class="logout">تسجيل الخروج</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- إطار عرض تفاصيل المزاد والمزايدات الأخيرة -->
+    <div class="content-wrapper">
+        <div class="auction-page-container">
+            <!-- إطار عرض تفاصيل المزاد -->
+            <div class="auction-details-container">
+                <h2 id="auction-title">عنوان المزاد</h2>
+                <div class="auction-images-container">
+                    <a class="prev-slide" onclick="changeSlide(-1)">&#10094;</a>
+                    <div id="auction-images" class="image-slide-container"></div>
+                    <a class="next-slide" onclick="changeSlide(1)">&#10095;</a>
+                </div>
+                <div class="auction-description-container">
+                    <h3>وصف المزاد</h3>
+                    <p id="auction-description"></p>
+                </div>
+                <div class="auction-details-grid">
+                    <h2>تفاصيل المزاد</h2>
+                    <div class="auction-location">
+                        <div><i class="fas fa-map-marker-alt"></i> <strong>الولاية :</strong> <span id="wilaya"></span></div>
+                        <div><i class="fas fa-map-marker-alt"></i> <strong>البلدية :</strong> <span id="commune"></span></div>
+                    </div>
+                    <div class="auction-info-grid">
+                        <div><i class="fas fa-list-alt"></i> <strong>رقم المزاد :</strong> <span id="auction-number"></span></div>
+                        <div><i class="fas fa-gavel"></i> <strong>نوع المزاد :</strong> <span id="auction-type"></span></div>
+                        <div><i class="fas fa-tag"></i> <strong>السعر الابتدائي :</strong> <span id="start-price"></span> دج</div>
+                        <div><i class="fas fa-clock"></i> <strong>تاريخ البدء :</strong> <span id="start-time"></span></div>
+                        <div><i class="fas fa-clock"></i> <strong>تاريخ الانتهاء :</strong> <span id="end-time"></span></div>
+                        <div class="auction-last-bid"><i class="fas fa-money-bill-alt"></i> <strong>آخر سعر :</strong> <span id="last-bid-price" class="last-bid-price"></span> دج</div>
+                        <!-- إضافة عنصر مخفي لتخزين auction-id -->
+                        <div id="auction-id" class="hidden-id"></div>
+                    </div>
+                    <!-- إضافة العداد فوق خانة المزايدة -->
+                    <div id="countdown-timer">
+    <div class="timer-box" id="days">
+        <span class="number">0</span>
+        <div class="label">أيام</div>
+    </div>
+    <div class="timer-box" id="hours">
+        <span class="number">0</span>
+        <div class="label">ساعات</div>
+    </div>
+    <div class="timer-box" id="minutes">
+        <span class="number">0</span>
+        <div class="label">دقائق</div>
+    </div>
+    <div class="timer-box" id="seconds">
+        <span class="number">0</span>
+        <div class="label">ثواني</div>
+    </div>
+</div>
+                    <div id="bid-section" class="bid-input-container">
+                        <img src="images/555.gif" alt="Icon" class="icon icon-left">
+                        <input type="number" id="bid-amount" placeholder="أدخل سعر المزايدة">
+                        <button id="place-bid-button">زايد الآن</button>
+                        <img src="images/555.gif" alt="Icon" class="icon icon-right">
+                    </div>
+                </div>
+            </div>
+<div class="bids-container">
+    <h3>آخر المزايدات</h3>
+    
+    <div id="bids-table-container"></div>
+</div>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة لعرض الصورة الكبيرة -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img id="modal-image" src="" alt="صورة المزاد الكبيرة">
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                fetch('/get-user-data', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.user_id) {
+                        document.getElementById('user-id').value = data.user_id;
+                        console.log('User ID fetched successfully:', data.user_id); // طباعة للتحقق من قيمة user_id
+                    } else {
+                        console.log('User ID not found in the response');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+            } else {
+                console.log('Token not found in localStorage');
+            }
+        });
+    </script>
+    <!-- إضافة ملفات JavaScript -->
+    <script src="notifications.js"></script> <!-- استيراد ملف التنبيهات -->
+    <script src="bid.js"></script>
+</body>
+</html>

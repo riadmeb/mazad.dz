@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المستخدمين</title>
+    <link rel="stylesheet" href="dashboard-style.css">
+    <link rel="stylesheet" href="user-management-style.css">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="user-info">
+            <img src="path-to-your-profile-picture.jpg" alt="صورة المدير الشخصي" class="profile-pic" id="profilePic">
+            <span id="username">اسم المستخدم</span>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="toggleDropdown()">▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <button onclick="logout()">تسجيل الخروج</button>
+                </div>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="auctions.html" class="auction-button">المزادات</a>
+            <a href="admin-dashboard.html" class="auction-button">الصفحة الرئيسية</a>
+        </div>
+    </header>
+    <main>
+        <div class="user-list-container">
+            <h2 class="header-right">إدارة المستخدمين</h2>
+            <div class="user-lists">
+                <div class="user-list" id="pendingList">
+                    <h3>المستخدمين المعلقين</h3>
+                    <ul></ul>
+                </div>
+                <div class="user-list" id="approvedList">
+                    <h3>المستخدمين المقبولين</h3>
+                    <ul></ul>
+                </div>
+                <div class="user-list" id="rejectedList">
+                    <h3>المستخدمين المرفوضين</h3>
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="admin-header.js"></script> 
+    <script src="user-management.js"></script> ```
+
+</body>
+</html>
