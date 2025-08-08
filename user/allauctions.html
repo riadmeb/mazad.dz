@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>كل المزادات غير المنتهية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="bid.css" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="allauctions.css" />
+</head>
+<body dir="rtl">
+
+<!-- ================================================================= -->
+<!-- رأس الصفحة (Headers) -->
+<!-- ================================================================= -->
+
+<!-- رأس الصفحة للزوار (يظهر عندما لا يكون المستخدم مسجلاً دخوله) -->
+<header id="guest-header">
+    <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo" />
+    <nav class="nav-center">
+        <a href="index.html" class="nav-button auction-button">الصفحة الرئيسية</a>
+    </nav>
+    <nav class="nav-right">
+        <a href="register.html" class="nav-button">تسجيل</a>
+        <a href="login.html" class="nav-button">تسجيل الدخول</a>
+    </nav>
+</header>
+
+<!-- رأس الصفحة للمستخدم المسجل دخوله (النسخة المصححة) -->
+<!-- ملاحظة: يبدأ مع كلاس "hidden" وسيتم إظهاره بواسطة JavaScript -->
+<header id="user-header" class="hidden">
+    <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo" />
+    <nav class="nav-center">
+        <a href="index.html" class="nav-button auction-button">الصفحة الرئيسية</a>
+    </nav>
+    <nav>
+        <div class="notifications-container">
+            <img id="notifications-icon" src="images/bell-ring.png" alt="رمز التنبيهات" class="notification-icon" />
+            <div class="notifications-menu hidden" id="notificationsMenu">
+                <p>لا توجد رسائل جديدة</p>
+            </div>
+        </div>
+        <div class="user-info">
+            <span id="user-name"></span>
+        </div>
+        <!-- ✅ حاوية صورة المستخدم والقائمة المنسدلة -->
+        <div class="user-icon-container">
+            <img id="user-profile-picture" src="" alt="صورة المستخدم" class="user-icon" />
+            <!-- هذه هي القائمة المنسدلة التي يجب أن تظهر عند النقر -->
+            <div class="dropdown-menu hidden" id="dropdownMenu">
+                <a href="my-auctions.html" class="my-auctions">مزاداتي</a>
+                <a href="settings.html">إعدادات الحساب</a>
+                <a href="#" class="logout">تسجيل الخروج</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <main class="main-container">
+
+        <!-- منطقة البحث -->
+   <div class="search-container">
+    <!-- حقل البحث بالاسم أو الرقم -->
+    <input type="text" id="searchQuery" placeholder="ابحث برقم أو اسم المزاد..." aria-label="بحث عن مزاد" />
+
+    <!-- فلتر نوع المزاد -->
+    <label for="auctionTypeFilter">النوع:</label>
+    <select id="auctionTypeFilter" aria-label="نوع المزاد">
+        <option value="all">كل الأنواع</option>
+        <!-- الأنواع ستتم إضافتها هنا من خلال JavaScript -->
+    </select>
+
+    <!-- فلتر حالة المزاد -->
+    <label for="statusFilter">الحالة:</label>
+    <select id="statusFilter" aria-label="حالة المزاد">
+        <option value="all">الكل</option>
+        <option value="ongoing">جاري الآن</option>
+        <option value="upcoming">لم يبدأ بعد</option>
+    </select>
+
+    <!-- زر البحث -->
+    <button onclick="searchAuctions()">بحث</button>
+</div>
+
+        <!-- عنوان المزادات -->
+        <h2 style="text-align:center; margin: 30px 0;"> المزادات الجارية والتي لم تبدأ بعد</h2>
+
+        <!-- قائمة المزادات -->
+        <div id="auctions-list" class="auctions-list"></div>
+        <!-- نافذة منبثقة لرسالة التنبيه -->
+    <div id="alertModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeAlertModal()">&times;</span>
+            <p>يجب تسجيل الدخول أو إنشاء حساب للتمكن من المزايدة.</p>
+        </div>
+    </div>
+
+    <!-- نافذة الشروط للموافقة قبل المزايدة -->
+    <div id="termsModal" class="modal hidden">
+        <div class="modal-content" style="direction: rtl;">
+            <span class="close-button" onclick="closeTermsModal()">&times;</span>
+            <h3>📄 شروط المشاركة في المزاد العلني</h3>
+            <ul style="font-size: 14px; padding-right: 20px;">
+                <li>يُعتبر كل مشارك في المزاد مطّلعًا وموافقًا على الشروط التالية.</li>
+                <li>البيع يتم على الحالة التي عليها العتاد وبدون أي ضمان.</li>
+                <li>
+                    مدة كل مزاد محددة بـ 15 دقيقة، وفي حال تقديم عرض خلال الدقيقة
+                    الأخيرة، يُضاف تلقائيًا 5 دقائق إضافية.
+                </li>
+                <li>
+                    يلتزم المزايد الفائز بتسديد كامل مبلغ البيع في مدة لا تتجاوز ثمانية (8) أيام من تاريخ فوزه بالمزاد.
+                </li>
+                <li>
+                    <strong style="color: red;">
+                        في حال عدم دفع المبلغ في الآجال المحددة، يُعتبر المزايد في حالة تخلف، وتُطبق عليه الإجراءات التالية:
+
+                    </strong>
+                </li>
+                <ul style="margin-right: 20px;">
+                    <li>إعادة عرض الحصة ويتحمل المزايد المتخلف الفارق والمصاريف.</li>
+                    <li>الإدراج ضمن قائمة المزايدين المحظورين.</li>
+                    <li>المتابعة القضائية وغرامة بـ 10% من مبلغ البيع.</li>
+                </ul>
+                <li>
+                    بالموافقة على هذه الشروط، يُقرّ المشارك بتحمّله كامل المسؤولية
+                    القانونية.
+                </li>
+            </ul>
+            <label style="display: block; margin-top: 10px;">
+                <input type="checkbox" id="agreeTerms" /> أوافق على الشروط والأحكام
+            </label>
+            <br />
+            <button
+                onclick="confirmBid()"
+                style="
+                    padding: 8px 16px;
+                    background-color: #007bff;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                "
+            >
+                موافقة والمواصلة
+            </button>
+        </div>
+    </div>
+<!-- نافذة تنبيه: يجب الموافقة على الشروط -->
+<div id="termsAlertModal" class="modal hidden">
+  <div class="modal-content" style="direction: rtl;">
+    <span class="close-button" onclick="closeTermsAlertModal()">&times;</span>
+    <p style="font-size: 16px; text-align: center;">
+      يجب الموافقة على الشروط للمتابعة.
+    </p>
+  </div>
+</div>
+
+    </main>
+
+    <!-- الفوتر -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <!-- ربط ملف جافاسكريبت -->
+    <script src="allauctions.js"></script>
+</body>
+</html>

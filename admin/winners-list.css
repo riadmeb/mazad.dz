@@ -1,0 +1,117 @@
+/* ==================================================
+   Auction Winners Page Styles
+   ================================================== */
+
+/* Main container for the winner cards */
+.winners-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 25px;
+}
+
+/* Individual auction card styling */
+.auction-card {
+    background-color: #add3eb;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auction-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Auction details section (top part of the card) */
+.auction-details {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.auction-details h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.auction-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.meta-item i {
+    color: #8B5CF6; /* Accent color for icons */
+}
+
+/* Winners list section (bottom part of the card) */
+.winners-list {
+    padding: 20px;
+    background-color: #cddff2; /* Slightly different background for separation */
+    flex-grow: 1;
+}
+
+.winners-list h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.winner-details {
+    border-right: 3px solid  #cf1212;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+/* Special styling for the first winner */
+.winner-details.rank-1 {
+    border-right-color: #f59e0b; /* Gold color for rank 1 */
+    background-color: #fffbeb;
+    border-radius: 6px;
+}
+
+.winner-details.rank-1 .winner-rank {
+    color: #f59e0b;
+    font-weight: 700;
+}
+
+.winner-rank {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.winner-info p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.winner-info p strong {
+    color: var(--text-primary);
+}
+
+/* Message for auctions with no winners */
+.no-winners {
+    font-style: italic;
+    color: var(--text-secondary);
+}

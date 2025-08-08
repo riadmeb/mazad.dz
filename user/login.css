@@ -1,0 +1,159 @@
+
+/* استخدام المتغيرات والخطوط من ملف index.css */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;500&display=swap');
+
+:root {
+    --bg-primary: #1a202c;
+    --bg-secondary: #2d3748;
+    --accent-primary: #3182ce;
+    --text-primary: #E2E8F0;
+    --text-secondary: #A0AEC0;
+    --border-color: #4A5568;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--bg-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    height: 70px;
+}
+
+header nav a {
+    font-family: 'Cairo', sans-serif;
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover {
+    color: var(--text-primary);
+    background-color: var(--accent-primary);
+}
+
+/* حاوية لتوسيط النموذج */
+.main-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* حاوية النموذج بتأثير الزجاج المصنفر */
+.login-container {
+    background: rgba(45, 55, 72, 0.7); /* لون شبه شفاف */
+    backdrop-filter: blur(10px); /* تأثير الضبابية */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: right;
+}
+
+.login-container h2 {
+    font-family: 'Cairo', sans-serif;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.3);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #2b6cb0;
+    transform: translateY(-2px);
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.register-link a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* تنسيق رسائل الخطأ */
+.alert {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #F87171;
+    border: 1px solid #EF4444;
+}

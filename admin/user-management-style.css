@@ -1,0 +1,176 @@
+/* ==================================================
+   User Management Page Styles
+   ================================================== */
+
+/* Main layout grid for the user lists */
+.user-management-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Styling for each user list card */
+.user-list-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden; /* Ensures the header's top corners are rounded */
+    display: flex;
+    flex-direction: column;
+}
+
+.list-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.list-header h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Colors for each list type */
+.list-header.pending { background-color: #eab308; }
+.list-header.approved { background-color: #22c55e; }
+.list-header.rejected { background-color: #ef4444; }
+
+/* Styling for the list of users */
+.user-list-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.user-list-items li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.user-list-items li:last-child {
+    border-bottom: none;
+}
+
+.user-list-items li:hover {
+    background-color: var(--main-bg);
+}
+
+.user-item-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-color);
+}
+
+.user-item-name {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* --- User Details Popup --- */
+.user-details-popup {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+    font-family: var(--font-family);
+    direction: rtl;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Positioning for popups */
+#pendingList li:hover .user-details-popup,
+#approvedList li:hover .user-details-popup {
+    left: 105%; 
+    display: block;
+    opacity: 1;
+}
+
+#rejectedList li:hover .user-details-popup {
+    right: 105%;
+    display: block;
+    opacity: 1;
+}
+
+.popup-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.popup-profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #8B5CF6;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+.popup-header h4 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text-primary);
+}
+
+.popup-info p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.popup-info p strong {
+    color: var(--text-primary);
+    margin-left: 5px;
+}
+
+/* Buttons inside the popup */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button-container button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.approve-button { background-color: #22c55e; color: white; }
+.reject-button { background-color: #ef4444; color: white; }
+.delete-button { background-color: #6B7280; color: white; }

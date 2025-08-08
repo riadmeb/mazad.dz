@@ -1,0 +1,77 @@
+
+/* تأكد من أن هذه المتغيرات معرفة في ملف CSS الرئيسي لديك */
+:root {
+    --bg-primary: #1a202c;
+    --bg-secondary: #2d3748;
+    --accent-primary: #3182ce;
+    --text-primary: #E2E8F0;
+    --text-secondary: #A0AEC0;
+    --border-color: #4A5568;
+}
+
+/* الحاوية الرئيسية للفوتر */
+.site-footer {
+    background-color: var(--bg-primary); /* استخدام اللون الأغمق للخلفية */
+    color: var(--text-secondary);
+    padding: 25px 20px; /* تقليل المساحة الداخلية لجعل الفوتر أقصر */
+    border-top: 1px solid var(--border-color);
+    font-family: 'Tajawal', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* الطابق العلوي للفوتر */
+.footer-top {
+    display: flex;
+    justify-content: space-between; /* توزيع العناصر على الأطراف */
+    align-items: center;
+    flex-wrap: wrap; /* للسماح بالتفاف العناصر في الشاشات الصغيرة */
+    gap: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color); /* خط فاصل أنيق */
+}
+
+/* روابط التنقل في الفوتر */
+.footer-nav {
+    display: flex;
+    gap: 30px; /* مسافة بين الروابط */
+    flex-wrap: wrap;
+}
+
+.footer-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: var(--accent-primary); /* تغيير اللون عند المرور */
+}
+
+/* أيقونات التواصل الاجتماعي */
+.footer-social {
+    display: flex;
+    gap: 18px;
+}
+
+.footer-social a {
+    color: var(--text-secondary);
+    font-size: 20px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--accent-primary);
+    transform: translateY(-3px); /* حركة بسيطة للأعلى عند المرور */
+}
+
+/* الطابق السفلي للفوتر (حقوق النشر) */
+.footer-bottom {
+    text-align: center;
+    font-size: 13px;
+}

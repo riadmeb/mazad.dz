@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <title>الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="footer.css" />
+</head>
+
+<body dir="rtl">
+    <!-- رأس الصفحة للزوار غير المسجلين -->
+    <header id="guest-header" class="">
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo" />
+        <nav class="nav-center">
+            <a href="allauctions.html" class="nav-button auction-button">المزادات</a>
+
+        </nav>
+        <nav class="nav-right">
+            <a href="register.html" class="nav-button">تسجيل</a>
+            <a href="login.html" class="nav-button">تسجيل الدخول</a>
+        </nav>
+    </header>
+
+    <!-- رأس الصفحة للمستخدمين المسجلين -->
+    <header id="user-header" class="">
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo" />
+            <nav class="nav-center">
+            <a href="allauctions.html" class="nav-button auction-button">المزادات</a>
+            <a href="my-auctions.html" class="nav-button auction-button">مزاداتي</a>
+        </nav>
+        <nav>
+            <div class="notifications-container">
+                <img
+                    id="notifications-icon"
+                    src="images/bell-ring.png"
+                    alt="رمز التنبيهات"
+                    class="notification-icon"
+                />
+                <div class="notifications-menu hidden" id="notificationsMenu">
+                    <!-- الرسائل سيتم استيرادها هنا -->
+                    <p>لا توجد رسائل جديدة</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <span id="user-name"></span>
+            </div>
+            <!-- تم تحديث هذه الحاوية بالكامل -->
+               <div class="user-icon-container">
+                <img
+                    id="user-profile-picture"
+                    src=""
+                    alt="صورة المستخدم"
+                    class="user-icon"
+                />
+                <!-- ✅ تم استبدال السهم برمز Font Awesome -->
+                <i class="fas fa-down dropdown-arrow"></i>
+                <div class="dropdown-menu hidden" id="dropdownMenu">
+                    <a href="my-auctions.html" class="my-auctions">مزاداتي</a>
+                    <a href="settings.html">إعدادات الحساب</a>
+                    <a href="#" class="logout">تسجيل الخروج</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+   <!-- منطقة الإعلانات (البنية الجديدة) -->
+<div class="ad-container">
+    
+    <!-- الشريحة الأولى -->
+    <div class="ad-slide active">
+        <img src="images-publicitte\1.png" alt="إعلان 1" />
+        <div class="ad-overlay">
+            <h2>بيع على موقع مزاد الجزائر</h2>
+            <a href="allauctions.html" class="ad-cta-button">تصفح أحدث المزادات</a>
+        </div>
+    </div>
+
+    <!-- الشريحة الثانية -->
+    <div class="ad-slide">
+        <img src="images-publicitte\2.png" alt="إعلان 2" />
+        <div class="ad-overlay">
+            <a href="#" class="ad-cta-button">اكتشف المزيد</a>
+        </div>
+    </div>
+   
+    <!-- أزرار التنقل -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+
+    <!-- منطقة البحث -->
+    <div class="search-container">
+        <input
+            type="text"
+            id="searchQuery"
+            placeholder="ابحث عن مزاد برقم أو اسم المزاد..."
+        />
+        <label for="auctionTypeFilter"> نوع المزاد: </label>
+        <select id="auctionTypeFilter" aria-label="نوع المزاد">
+            <option value="">جميع الأنواع</option>
+            <!-- الأنواع ستتم إضافتها ديناميكيًا من قاعدة البيانات -->
+        </select>
+        <button onclick="searchAuctions()">بحث</button>
+    </div>
+
+    <!-- منطقة المزادات -->
+    <div class="auctions-container">
+        <h2>المزادات النشطة</h2>
+        <div id="auctions-list" class="auctions-list"></div>
+        <a href="allauctions.html" id="view-more-auctions" class="view-more-button"
+            >عرض المزيد من المزادات</a
+        >
+    </div>
+<div id="enlargedImageModal" class="image-modal" style="display: none;">
+    <span class="image-modal-close" onclick="closeModal('enlargedImageModal')">&times;</span>
+    <a class="image-modal-prev" onclick="changeModalImage(-1)">&#10094;</a>
+    <img class="image-modal-content" id="enlargedImg">
+    <a class="image-modal-next" onclick="changeModalImage(1)">&#10095;</a>
+</div>
+    <!-- نافذة منبثقة لرسالة التنبيه -->
+    <div id="alertModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeAlertModal()">&times;</span>
+            <p>يجب تسجيل الدخول أو إنشاء حساب للتمكن من المزايدة.</p>
+        </div>
+    </div>
+
+   <div id="termsModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal('termsModal')">&times;</span>
+        
+        <h3><i class="fas fa-file-signature"></i> شروط المشاركة في المزاد</h3>
+        
+        <div class="terms-content">
+            <ul>
+                <li>يُعتبر كل مشارك في المزاد مطّلعًا وموافقًا على الشروط التالية.</li>
+                <li>البيع يتم على الحالة التي عليها العتاد وبدون أي ضمان.</li>
+                <li>مدة كل مزاد محددة بـ 15 دقيقة، وفي حال تقديم عرض خلال الدقيقة الأخيرة، يُضاف تلقائيًا 5 دقائق إضافية.</li>
+                <li>يلتزم المزايد الفائز بتسديد كامل مبلغ البيع في مدة لا تتجاوز ثمانية (8) أيام من تاريخ فوزه بالمزاد.</li>
+                <li>
+                    <strong class="warning-text">
+                        في حال عدم دفع المبلغ في الآجال المحددة، يُعتبر المزايد في حالة تخلف، وتُطبق عليه الإجراءات التالية:
+                    </strong>
+                    <ul class="sub-list">
+                        <li>إعادة عرض الحصة ويتحمل المزايد المتخلف الفارق والمصاريف.</li>
+                        <li>الإدراج ضمن قائمة المزايدين المحظورين.</li>
+                        <li>المتابعة القضائية وغرامة بـ 10% من مبلغ البيع.</li>
+                    </ul>
+                </li>
+                <li>بالموافقة على هذه الشروط، يُقرّ المشارك بتحمّله كامل المسؤولية القانونية.</li>
+            </ul>
+        </div>
+        
+        <div class="modal-footer">
+            <label class="custom-checkbox-container">
+                <input type="checkbox" id="agreeTermsCheckbox" />
+                <span class="checkmark"></span>
+                أوافق على الشروط والأحكام
+            </label>
+            <button id="confirmBidButton" class="modal-button" onclick="confirmBid()" disabled>
+                موافقة والمواصلة
+            </button>
+        </div>
+    </div>
+</div>
+
+
+   
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then((response) => response.text())
+            .then((data) => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+    <script src="index.js"></script>
+</body>
+</html>

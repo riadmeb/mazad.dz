@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم العصرية</title>
+    
+    <!-- Google Fonts: Cairo for Arabic UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- SweetAlert2 for beautiful alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- New Stylesheet -->
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <!-- The old alert-container is no longer needed -->
+
+    <div class="dashboard-layout">
+        <!-- ================== Sidebar ================== -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-tachometer-alt logo-icon"></i>
+                <h1 class="logo-text">لوحة التحكم</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-link active">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="UsersPage.html" class="nav-link">
+                    <i class="fas fa-users nav-icon"></i>
+                    <span>إدارة المستخدمين</span>
+                </a>
+                <a href="auctions.html" class="nav-link">
+                    <i class="fas fa-gavel nav-icon"></i>
+                    <span>المزادات</span>
+                </a>
+                <a href="winners-list.html" class="nav-link">
+                    <i class="fas fa-trophy nav-icon"></i>
+                    <span>الفائزون</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="/images/default.png" alt="صورة المدير" id="profilePic">
+                    <div class="user-details">
+                        <span id="username">اسم المستخدم</span>
+                        <small>مدير النظام</small>
+                    </div>
+                    <div class="dropdown">
+                         <button class="logout-btn" onclick="logout()" title="تسجيل الخروج">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ================== Main Content ================== -->
+        <main class="main-content">
+            <header class="main-header">
+                <h2>لوحة المعلومات الرئيسية</h2>
+            </header>
+
+            <!-- Statistics Section -->
+            <section class="statistics-section">
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper" style="background: #e0f2fe;">
+                        <i class="fas fa-users stat-icon" style="color: #0ea5e9;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>إجمالي المستخدمين</p>
+                        <span id="totalUsers">0</span>
+                    </div>
+                </div>
+                 <div class="stat-card">
+                    <div class="stat-icon-wrapper" style="background: #dcfce7;">
+                        <i class="fas fa-gavel stat-icon" style="color: #22c55e;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>المزادات النشطة</p>
+                        <span id="activeAuctions">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper" style="background: #f3e8ff;">
+                        <i class="fas fa-check-circle stat-icon" style="color: #a855f7;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>المزادات المكتملة</p>
+                        <span id="completedAuctions">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper" style="background: #fef9c3;">
+                        <i class="fas fa-hourglass-half stat-icon" style="color: #eab308;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>المزادات المعلقة</p>
+                        <span id="pendingAuctions">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper" style="background: #ffe4e6;">
+                        <i class="fas fa-layer-group stat-icon" style="color: #f43f5e;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>إجمالي المزادات</p>
+                        <span id="totalAuctions">0</span>
+                    </div>
+                </div>
+                 <div class="stat-card">
+                    <div class="stat-icon-wrapper" style="background: #e0e7ff;">
+                        <i class="fas fa-users-cog stat-icon" style="color: #6366f1;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>إجمالي المزايدين</p>
+                        <span id="totalBidders">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Auction Form Section -->
+            <section class="add-auction-section">
+                <div class="form-card">
+                    <h3 class="form-title">إضافة مزاد جديد</h3>
+                    <form id="addAuctionForm" method="POST" enctype="multipart/form-data">
+                        <div class="form-grid">
+                            <div class="form-group span-2">
+                                <label for="title">اسم المزاد</label>
+                                <input type="text" id="title" name="title" placeholder="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="auction_type_id">نوع المزاد</label>
+                                <select id="auction_type_id" name="auction_type_id" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="start_price">السعر الابتدائي (دج)</label>
+                                <input type="number" id="start_price" name="start_price" placeholder="مثال: 150000" required>
+                            </div>
+                            <div class="form-group span-2">
+                                <label for="description">وصف المزاد</label>
+                                <textarea id="description" name="description" rows="4" placeholder="اكتب وصفاً جذاباً للمزاد هنا..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="wilaya">الولاية</label>
+                                <input type="text" id="wilaya" name="wilaya" placeholder="مثال: الجزائر العاصمة" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="commune">البلدية</label>
+                                <input type="text" id="commune" name="commune" placeholder="مثال: حيدرة" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="start_time">وقت البدء</label>
+                                <input type="datetime-local" id="start_time" name="start_time" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="end_time">وقت الانتهاء</label>
+                                <input type="datetime-local" id="end_time" name="end_time" required>
+                            </div>
+                            <div class="form-group span-2">
+                                <label for="images">صور المزاد (يمكن تحديد أكثر من صورة)</label>
+                                <input type="file" id="images" name="images" class="file-input" accept="image/*" multiple required>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>إضافة المزاد الآن</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- JavaScript files (unchanged) -->
+    <script src="dashboard.js"></script>
+    <script src="add-auction.js"></script>
+</body>
+</html>

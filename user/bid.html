@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المزايدة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="bid.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+<body dir="rtl">
+    <!-- رأس الصفحة للمستخدمين المسجلين -->
+    <header id="user-header" class="">
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo">
+        <nav class="nav-center">
+            <a href="allauctions.html" class="nav-button auction-button">المزادات</a>
+            <a href="index.html" class="nav-button auction-button">الصفحة الرئيسية</a>
+        </nav>
+        <nav>
+            <div class="notifications-container">
+                <img id="notifications-icon" src="images/bell-ring.png" alt="رمز التنبيهات" class="notification-icon">
+                <div class="notifications-menu hidden" id="notificationsMenu">
+                    <!-- الرسائل سيتم استيرادها هنا -->
+                    <p>لا توجد رسائل جديدة</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <span id="user-name"></span>
+                <input type="hidden" id="user-id" value="">  <!-- سيتم ملء معرف المستخدم تلقائيًا -->
+            </div>
+            <div class="user-icon-container">
+                <img id="user-profile-picture" src="" alt="صورة المستخدم" class="user-icon">
+                <div class="dropdown-menu hidden" id="dropdownMenu">
+                    <a href="my-auctions.html" class="my-auctions">مزاداتي</a>
+                    <a href="settings.html">إعدادات الحساب</a>
+                    <a href="logout.html" class="logout">تسجيل الخروج</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+        <!-- المحتوى الرئيسي للصفحة بالتصميم الجديد -->
+    <main class="auction-page-wrapper">
+        <div class="auction-grid-container">
+            
+            <!-- العمود الأيمن: معرض الصور -->
+            <div class="auction-gallery-container">
+                <div class="main-image-wrapper">
+                    <img id="main-auction-image" src="https://placehold.co/800x600/2D3748/E2E8F0?text=MAZAD" alt="صورة المزاد الرئيسية">
+                </div>
+                <div id="thumbnail-container" class="thumbnail-wrapper">
+                    <!-- الصور المصغرة سيتم إضافتها هنا بواسطة JavaScript -->
+                </div>
+            </div>
+
+            <!-- العمود الأيسر: لوحة التحكم -->
+            <div class="auction-control-panel">
+                <h1 id="auction-title" class="panel-title">تحميل عنوان المزاد...</h1>
+                
+                <div class="panel-section price-section">
+                    <p class="price-label">السعر الحالي</p>
+                    <p id="last-bid-price" class="price-value">0 د.ج</p>
+                </div>
+
+                <div class="panel-section timer-section">
+                    <p class="timer-label">الوقت المتبقي</p>
+                    <div id="countdown-timer" class="countdown-container">
+                        <!-- عداد الوقت سيتم إضافته هنا -->
+                    </div>
+                </div>
+
+                <div id="bid-section" class="panel-section bid-section">
+                    <input type="number" id="bid-amount" placeholder="أدخل مبلغ المزايدة">
+                    <button id="place-bid-button" class="bid-button">
+                        <i class="fas fa-gavel"></i> زايد الآن
+                    </button>
+                </div>
+
+                <details class="panel-section details-section">
+                    <summary>عرض كل التفاصيل</summary>
+                    <div class="details-grid">
+                        <p><strong>رقم المزاد:</strong> <span id="auction-number"></span></p>
+                        <p><strong>النوع:</strong> <span id="auction-type"></span></p>
+                        <p><strong>الولاية:</strong> <span id="wilaya"></span></p>
+                        <p><strong>البلدية:</strong> <span id="commune"></span></p>
+                        <p><strong>السعر الابتدائي:</strong> <span id="start-price"></span> د.ج</p>
+                        <p><strong>بدأ في:</strong> <span id="start-time"></span></p>
+                        <p><strong>ينتهي في:</strong> <span id="end-time"></span></p>
+
+                    </div>
+                </details>
+
+                <div class="panel-section description-section">
+                    <h4>وصف المزاد</h4>
+                    <p id="auction-description"></p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- قسم المزايدات الأخيرة (تصميم جديد) -->
+        <div class="bids-history-container">
+            <h3><i class="fas fa-history"></i> سجل المزايدات الأخيرة</h3>
+            <div id="bids-table-container">
+                <!-- جدول المزايدات سيتم إضافته هنا -->
+            </div>
+        </div>
+    </main>
+
+    <!-- نافذة تكبير الصور -->
+    <div id="imageModal" class="image-modal">
+        <span class="close-button">&times;</span>
+        <img class="modal-image-content" id="modalImage">
+    </div>
+
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                fetch('/get-user-data', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.user_id) {
+                        document.getElementById('user-id').value = data.user_id;
+                        console.log('User ID fetched successfully:', data.user_id); // طباعة للتحقق من قيمة user_id
+                    } else {
+                        console.log('User ID not found in the response');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+            } else {
+                console.log('Token not found in localStorage');
+            }
+        });
+    </script>
+    <!-- إضافة ملفات JavaScript -->
+    <script src="notifications.js"></script> <!-- استيراد ملف التنبيهات -->
+    <script src="bid.js"></script>
+</body>
+</html>

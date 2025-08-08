@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المزادات</title>
+
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- SweetAlert2 for beautiful alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="dashboard-style.css">
+    <link rel="stylesheet" href="auctions-style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- ================== Sidebar ================== -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-tachometer-alt logo-icon"></i>
+                <h1 class="logo-text">لوحة التحكم</h1>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="/images/default.png" alt="صورة المدير" id="profilePic">
+                    <div class="user-details">
+                        <span id="username">اسم المستخدم</span>
+                        <small>مدير النظام</small>
+                    </div>
+                    <button class="logout-btn" onclick="logout()" title="تسجيل الخروج">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-link">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="UsersPage.html" class="nav-link">
+                    <i class="fas fa-users nav-icon"></i>
+                    <span>إدارة المستخدمين</span>
+                </a>
+                <a href="auctions.html" class="nav-link active">
+                    <i class="fas fa-gavel nav-icon"></i>
+                    <span>المزادات</span>
+                </a>
+                <a href="winners-list.html" class="nav-link">
+                    <i class="fas fa-trophy nav-icon"></i>
+                    <span>الفائزون</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- ================== Main Content ================== -->
+        <main class="main-content">
+            <header class="main-header">
+                <h2>إدارة المزادات</h2>
+                <p>عرض وتعديل وحذف المزادات الحالية والسابقة.</p>
+            </header>
+
+            <!-- Filter and Actions Bar -->
+            <div class="filter-bar">
+                <div class="search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="بحث بالرقم أو الاسم..." onkeyup="filterAuctions()">
+                </div>
+                <div class="filters">
+                    <select id="auctionTypeFilter" onchange="filterAuctions()">
+                        <option value="all">كل الأنواع</option>
+                    </select>
+                    <select id="auctionStatusFilter" onchange="filterAuctions()">
+                        <option value="all">كل الحالات</option>
+                        <option value="جار الآن">جار الآن</option>
+                        <option value="لم يبدأ">لم يبدأ</option>
+                        <option value="منتهي">منتهي</option>
+                    </select>
+                </div>
+                <button class="add-new-btn" onclick="window.location.href='admin-dashboard.html'">
+                    <i class="fas fa-plus"></i> إضافة مزاد
+                </button>
+            </div>
+
+            <!-- Auctions Container -->
+            <div id="auctionsContainer" class="auctions-container">
+                <!-- Auction cards will be populated by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Auction Modal -->
+    <div id="editModal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="closeEditModal" class="close-btn">&times;</button>
+            <h3>تعديل المزاد</h3>
+            <form id="editAuctionForm">
+                <div class="form-group">
+                    <label for="editTitle">عنوان المزاد:</label>
+                    <input type="text" id="editTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDescription">الوصف:</label>
+                    <textarea id="editDescription" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editStartPrice">السعر الابتدائي:</label>
+                        <input type="number" id="editStartPrice" name="start_price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editType">نوع المزاد:</label>
+                        <select id="editType" name="type" required></select>
+                    </div>
+                </div>
+                 <div class="form-row">
+                    <div class="form-group">
+                        <label for="editWilaya">الولاية:</label>
+                        <input type="text" id="editWilaya" name="wilaya" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCommune">البلدية:</label>
+                        <input type="text" id="editCommune" name="commune" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editStartTime">وقت البدء:</label>
+                        <input type="datetime-local" id="editStartTime" name="start_time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEndTime">وقت الانتهاء:</label>
+                        <input type="datetime-local" id="editEndTime" name="end_time" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>الصور الحالية:</label>
+                    <div id="currentImages" class="image-preview-container"></div>
+                </div>
+                <div class="form-group">
+                    <label for="editImages">إضافة صور جديدة (سيتم استبدال القديمة):</label>
+                    <input type="file" id="editImages" name="images" multiple class="file-input">
+                </div>
+                <div class="form-buttons">
+                    <button type="button" id="saveButton" class="save-btn">حفظ التعديلات</button>
+                    <button type="button" id="cancelButton" class="cancel-btn">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div id="imageModal" class="modal-overlay image-viewer" onclick="closeModal()">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="expandedImg">
+        <button class="prev" onclick="showPrevModalImage(event)">&#10094;</button>
+        <button class="next" onclick="showNextModalImage(event)">&#10095;</button>
+    </div>
+
+    <script src="auctions.js"></script>
+</body>
+</html>

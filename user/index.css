@@ -1,0 +1,1130 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;500&display=swap');
+
+
+
+.nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* لجعل زر المزادات في الوسط */
+}
+
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px; /* تصغير حجم الاسم واللقب */
+}
+
+
+
+
+
+
+
+
+
+
+
+.hidden {
+    display: none;
+}
+
+
+.dropdown-menu {
+    top: 40px; /* لضبط الموضع أسفل صورة المستخدم */
+    left: 0; /* محاذاة للقائمة ضمن العنصر */
+    transform: none; /* إزالة التحويل لضمان الموضع الصحيح */
+}
+
+
+
+
+
+.dropdown-menu .my-auctions {
+    color: #2870a7; /* لون مميز لزر مزاداتي */
+    font-weight: bold;
+}
+
+
+
+.user-icon-container {
+    position: relative;
+}
+
+.notifications-container {
+    position: relative;
+}
+
+
+/* تنسيقات القسم الأيسر في الرأس */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto; /* لتمرير العناصر إلى اليسار */
+}
+
+/* تنسيقات القسم الأوسط في الرأس */
+.nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+
+.auction-card h3 {
+    margin-top: 0;
+    font-size: 18px; /* حجم خط أصغر للعناوين */
+    color: #fcf9f9;
+}
+
+.auction-images {
+    position: relative; /* لضبط أزرار التنقل */
+    display: flex;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.auction-slide {
+    display: none;
+    width: 100%;
+    height: 150px; /* ضبط الارتفاع ليتناسب مع المزادات */
+}
+
+.auction-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* احتواء الصورة داخل الإطار */
+    border-radius: 5px;
+}
+
+.auction-images .prev-slide, .auction-images .next-slide {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+    border-radius: 0 3px 3px 0;
+    -webkit-user-select: none; /* الدعم لسفاري */
+    user-select: none;  /* الدعم لجميع المتصفحات */
+}
+
+.auction-images .prev-slide {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.auction-images .next-slide {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.auction-images .prev-slide:hover, .auction-images .next-slide:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.auction-card p {
+    margin: 5px 0;
+    font-size: 15px; /* حجم خط أصغر للنصوص */
+    color: #fcfafa;
+}
+/* تنسيق النافذة المنبثقة */
+.modal {
+    display: none; /* مخفي افتراضيًا */
+    position: fixed; /* ثابت */
+    z-index: 1; /* فوق جميع المحتويات الأخرى */
+    left: 0;
+    top: 0;
+    width: 100%; /* عرض كامل الشاشة */
+    height: 100%; /* ارتفاع كامل الشاشة */
+    overflow: auto; /* التمرير عند الضرورة */
+    background-color: rgb(0,0,0); /* لون الخلفية */
+    background-color: rgba(0,0,0,0.4); /* لون الخلفية مع الشفافية */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto; /* 15% من الأعلى وأسفل، ومركزي أفقيًا */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* عرض 80% من الشاشة */
+    max-width: 500px; /* عرض أقصى */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover, .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+.hidden {
+    display: none !important;
+}
+
+/* --- للشاشات المتوسطة (مثل الأجهزة اللوحية) --- */
+@media (max-width: 992px) {
+    /* نجعل بطاقات المزادات تظهر في عمودين بدلاً من ثلاثة */
+    .auction-card {
+        width: calc(50% - 20px);
+    }
+
+    /* تعديل الهيدر ليناسب الشاشات الأصغر */
+    header nav {
+        flex-wrap: wrap; /* السماح للعناصر بالالتفاف */
+        justify-content: center;
+    }
+}
+
+
+/* --- للشاشات الصغيرة (مثل الهواتف) --- */
+@media (max-width: 768px) {
+    /* نجعل كل بطاقة مزاد تأخذ العرض الكامل للشاشة */
+    .auction-card {
+        width: 100%;
+    }
+
+   
+
+    .nav-center, .nav-right, nav {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    
+
+}
+.user-icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* * الخطوة 2: إنشاء السهم نفسه
+ * نستخدم خدعة الحدود لإنشاء مثلث.
+ * border-top هو قاعدة المثلث، والحدود الجانبية الشفافة تشكل الجوانب.
+*/
+.dropdown-arrow {
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #1c9f29; /* لون السهم */
+    margin-right: 10px; /* مسافة بين الصورة والسهم */
+    transition: transform 0.3s ease; /* حركة بسيطة عند الفتح/الإغلاق */
+}
+
+/* * الخطوة 3: تدوير السهم عند فتح القائمة
+ * عندما يتم إضافة كلاس 'open' إلى الحاوية الرئيسية (من خلال JavaScript)،
+ * سيتم تدوير السهم 180 درجة.
+*/
+
+
+/* =================================================================
+ * الخطوة 1: استيراد الخطوط الجديدة
+ * ================================================================= */
+
+/* =================================================================
+ * الخطوة 2: تعريف لوحة الألوان الجديدة كمتغيرات
+ * ================================================================= */
+:root {
+    --bg-primary: #1a202c;       /* رمادي داكن مائل للزرقة (الخلفية الرئيسية) */
+    --bg-secondary: #2d3748;    /* درجة أفتح (خلفية البطاقات والهيدر) */
+    --accent-primary: #3182ce;    /* أزرق ساطع (للأزرار والتفاعل) */
+    --accent-secondary: #f6e05e;  /* ذهبي (للأسعار والعناصر الهامة) */
+    --text-primary: #E2E8F0;      /* أبيض مائل للرمادي (للنصوص الرئيسية) */
+    --text-secondary: #A0AEC0;   /* رمادي فاتح (للنصوص الفرعية) */
+    --border-color: #4A5568;      /* لون الحدود والفواصل */
+}
+
+/* =================================================================
+ * الخطوة 3: تطبيق الأنماط الأساسية
+ * ================================================================= */
+
+/* القاعدة الجديدة لـ body */
+body {
+    font-family: 'Tajawal', sans-serif; /* تطبيق الخط الأساسي للنصوص */
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-primary); /* تطبيق لون الخلفية الرئيسي */
+    color: var(--text-primary); /* تطبيق لون النص الأساسي */
+}
+
+/* تطبيق خط العناوين على كل العناوين والأزرار */
+h1, h2, h3, h4, h5, h6, button, .nav-button {
+    font-family: 'Cairo', sans-serif;
+}
+
+/* =================================================================
+ * الخطوة 2: تحديث رأس الصفحة (Header)
+ * ================================================================= */
+
+header {
+    background-color: var(--bg-secondary); /* استخدام لون الخلفية الثانوي الداكن */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px; /* زيادة الـ padding الأفقي قليلاً */
+    position: relative;
+    border-bottom: 1px solid var(--border-color); /* إضافة فاصل سفلي أنيق */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* إضافة ظل خفيف للعمق */
+}
+
+.logo {
+    height: 70px; /* تعديل بسيط على ارتفاع الشعار */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* زيادة المسافة بين العناصر */
+}
+
+.nav-button {
+    text-decoration: none;
+    color: var(--text-secondary); /* استخدام لون النص الثانوي للأزرار غير النشطة */
+    padding: 8px 18px;
+    border-radius: 20px; /* حواف دائرية بالكامل */
+    transition: all 0.3s ease;
+    font-weight: 500; /* وزن خط متوسط */
+    border: 1px solid transparent;
+}
+
+/* زر "المزادات" الرئيسي */
+.auction-button {
+    background-color: var(--accent-primary);
+    color: white;
+    font-weight: bold;
+}
+.auction-button:hover {
+    background-color: #2b6cb0; /* درجة أغمق قليلاً عند المرور */
+}
+
+/* بقية أزرار التنقل */
+.nav-button:hover {
+    color: var(--text-primary); /* تغيير لون النص عند المرور */
+}
+
+.user-icon {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+    transition: border-color 0.3s;
+}
+
+.user-icon:hover {
+    border-color: var(--accent-primary); /* تغيير لون الإطار عند المرور */
+}
+
+.notification-icon {
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+}
+
+.notification-icon:hover {
+    color: var(--text-primary);
+}
+
+.dropdown-menu, .notifications-menu {
+    position: absolute;
+    top: 65px; /* تعديل المسافة من الأعلى */
+    left: 0;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    min-width: 180px;
+    overflow: hidden; /* لإخفاء الزوايا الحادة للعناصر الداخلية */
+}
+
+.dropdown-menu a, .notifications-menu p {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--accent-primary);
+}
+
+.dropdown-menu .logout {
+    color: #E53E3E; /* أحمر للخروج */
+    font-weight: bold;
+}
+
+.user-icon-container, .notifications-container {
+    position: relative;
+}
+
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background-color: var(--bg-secondary); /* استخدام لون الخلفية الثانوي */
+    border-radius: 12px; /* حواف دائرية أكثر */
+    max-width: 800px; /* تحديد عرض أقصى */
+    margin: 5px auto; /* توسيط الحاوية */
+    border: 1px solid var(--border-color); /* إضافة إطار خفيف */
+}
+
+.search-container input,
+.search-container select {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-primary); /* استخدام لون الخلفية الأغمق للحقول */
+    color: var(--text-primary);
+    font-size: 14px; /* توحيد حجم الخط */
+    flex-grow: 1; /* جعل الحقول تتمدد لتملأ المساحة */
+}
+
+/* إزالة سهم المتصفح الافتراضي للقوائم المنسدلة */
+.search-container select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A0AEC0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+    padding-left: 40px; /* إضافة مساحة للأيقونة */
+}
+
+.search-container button {
+    padding: 12px 25px;
+    background-color: var(--accent-primary);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #2b6cb0; /* درجة أغمق قليلاً عند المرور */
+}
+
+
+.bid-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: auto; /* لدفع الزر إلى أسفل البطاقة دائمًا */
+}
+
+.auction-card-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px; /* مسافة فوق التفاصيل */
+    margin-bottom: 15px; /* مسافة تحت التفاصيل */
+    padding-top: 15px; /* مسافة داخلية */
+    border-top: 1px solid var(--border-color); /* خط فاصل أنيق */
+    font-size: 13px;
+    color: var(--text-secondary); /* استخدام اللون الثانوي للنص */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =================================================================
+ * تحديث كامل لمنطقة المزادات والبطاقات
+ * ================================================================= */
+
+
+
+.auctions-container {
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 15px;
+}
+
+.auctions-container h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+    color: var(--text-primary);
+}
+
+.auctions-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.auction-card {
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auction-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(49, 130, 206, 0.2);
+}
+
+/* --- الجزء العلوي من البطاقة (الصورة والمؤقت) --- */
+.auction-card-top {
+    position: relative;
+    /* ✅ تم تقليل ارتفاع الصورة */
+    height: 190px; 
+}
+
+.auction-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.auction-card:hover .auction-card-image {
+    transform: scale(1.05);
+}
+
+.countdown-timer {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--accent-secondary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    z-index: 3;
+}
+
+/* --- الجزء السفلي من البطاقة (المحتوى) --- */
+.auction-card-bottom {
+    /* ✅ تم تقليل المساحة الداخلية */
+    padding: 15px; 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.auction-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px; /* تقليل الهامش */
+}
+
+.auction-card-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.auction-card-tag {
+    padding: 4px 12px; /* تقليل المساحة الداخلية */
+    border-radius: 20px;
+    font-size: 11px; /* تصغير الخط */
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.auction-card-tag.primary {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+.auction-card-tag.secondary {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.auction-card-number {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px; /* تصغير الخط */
+    color: var(--text-secondary);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+
+.auction-card-price-value {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 6px;
+}
+
+
+
+.auction-card-currency {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent-secondary);
+    opacity: 0.8;
+}
+
+/* --- قسم التفاصيل --- */
+.auction-card-details {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 15px; /* تقليل الهامش */
+    padding-top: 10px; /* تقليل المسافة */
+    border-top: 1px solid var(--border-color);
+    font-size: 13px;
+    color: #CBD5E0;
+}
+
+.auction-card-details span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.auction-card-details .fas {
+    color: var(--accent-primary);
+    font-size: 14px;
+}
+
+/* --- زر المزايدة --- */
+.bid-button {
+    display: block;
+    width: 100%;
+    padding: 12px; /* تقليل حجم الزر */
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px; /* تصغير الخط */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: auto;
+}
+
+.bid-button:hover {
+    background-color: #2b6cb0;
+}
+
+
+
+
+
+
+
+.auction-card-price-container {
+    background: linear-gradient(145deg, rgba(125, 41, 41, 0.448), rgba(255, 255, 255, 0));
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ✅ تكبير وتوضيح ملصق "السعر الحالي" */
+.auction-card-price-label {
+    font-size: 38px; /* تكبير حجم الخط */
+    font-weight: bold;
+    color: var(--text-secondary);
+    margin-bottom: 8px; /* زيادة المسافة */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ✅ تكبير وإبراز السعر الفعلي بشكل أكبر */
+.auction-card-price {
+    font-family: 'Cairo', sans-serif;
+    font-size: 52px; /* زيادة حجم الخط بشكل كبير جدًا */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 5px 0; /* إضافة مساحة داخلية */
+    
+    /* تأثير التدرج اللوني للنص لإعطاء إحساس بالعمق والفخامة */
+    background: linear-gradient(to bottom, #3e9b3e, var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* زيادة قوة التوهج */
+    text-shadow: 0 0 20px rgba(246, 224, 94, 0.5); 
+}
+
+
+#view-more-auctions {
+    display: block;
+    width: fit-content; /* جعل العرض يناسب المحتوى */
+    margin: 40px auto 20px; /* توسيط الزر مع هوامش مناسبة */
+    padding: 12px 30px;
+    background-color: transparent; /* خلفية شفافة */
+    border: 2px solid var(--accent-primary); /* إطار باللون الأزرق المميز */
+    color: var(--accent-primary); /* لون النص أزرق */
+    text-align: center;
+    text-decoration: none; /* إزالة الخط تحت الرابط */
+    border-radius: 30px; /* حواف دائرية بالكامل */
+    font-family: 'Cairo', sans-serif; /* استخدام خط العناوين */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease; /* تأثير انتقال ناعم */
+}
+
+#view-more-auctions:hover {
+    background-color: var(--accent-primary); /* تغيير الخلفية إلى الأزرق عند المرور */
+    color: white; /* تغيير لون النص إلى الأبيض */
+    transform: translateY(-3px); /* رفعه قليلاً للأعلى */
+    box-shadow: 0 8px 15px rgba(49, 130, 206, 0.2); /* إضافة توهج أزرق */
+}
+
+
+
+
+
+
+
+
+
+/* تنسيق معرض الصور داخل البطاقة *//* تنسيق معرض الصور داخل البطاقة */
+.auction-card-gallery {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.auction-card-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.auction-card-thumbnails {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 6px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+}
+
+.auction-card-thumbnails img {
+    width: 50px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.auction-card-thumbnails img:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.auction-card-thumbnails img.active {
+    border-color: var(--accent-primary);
+}
+
+/* تنسيق نافذة تكبير الصور */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+.image-modal-content {
+    margin: auto;
+    display: block;
+    max-width: 85vw;
+    max-height: 85vh;
+}
+.image-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.image-modal-close:hover {
+    color: #bbb;
+}
+
+/* أزرار التنقل في النافذة المكبرة */
+.image-modal-prev,
+.image-modal-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.image-modal-prev {
+    left: 15px;
+}
+
+.image-modal-next {
+    right: 15px;
+}
+
+.image-modal-prev:hover,
+.image-modal-next:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+
+
+@keyframes kenburns-zoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/* الحاوية الرئيسية للإعلانات */
+.ad-container {
+    position: relative;
+    width: 95%; /* عرض مناسب */
+    max-width: 1200px; /* عرض أقصى */
+    height: 350px; /* ارتفاع أكبر لإعطاء إحساس سينمائي */
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 16px; /* حواف دائرية أكثر */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* الشريحة الإعلانية */
+.ad-slide {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.ad-slide.active {
+    display: block;
+}
+
+.ad-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* لملء المساحة بالكامل */
+    /* تطبيق حركة التقريب البطيء */
+    animation: kenburns-zoom 20s infinite alternate;
+}
+
+/* المنطقة المظللة والنص المتراكب */
+.ad-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    color: white;
+    text-align: right;
+}
+
+.ad-overlay h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* زر الدعوة للعمل (CTA) */
+.ad-cta-button {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.ad-cta-button:hover {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    transform: scale(1.05);
+}
+
+/* أسهم التنقل */
+.ad-container .prev, 
+.ad-container .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    opacity: 0; /* إخفاء الأزرار افتراضيًا */
+}
+
+/* إظهار الأسهم عند مرور الماوس فوق الحاوية */
+.ad-container:hover .prev,
+.ad-container:hover .next {
+    opacity: 1;
+}
+
+.ad-container .prev {
+    left: 15px;
+}
+
+.ad-container .next {
+    right: 15px;
+}
+
+.ad-container .prev:hover, 
+.ad-container .next:hover {
+    background-color: var(--accent-primary);
+}
+
+
+/* =================================================================
+ * تصميم جديد للنوافذ المنبثقة (Modals)
+ * ================================================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); /* خلفية أغمق */
+    display: flex; /* استخدام flex للتوسيط */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    margin: auto;
+    padding: 25px 30px;
+    border: 1px solid var(--border-color);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.modal-content h3 {
+    font-family: 'Cairo', sans-serif;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-content h3 .fas {
+    color: var(--accent-primary);
+    margin-left: 10px;
+}
+
+.terms-content {
+    max-height: 300px; /* تحديد ارتفاع أقصى للشروط */
+    overflow-y: auto; /* إضافة شريط تمرير عند الحاجة */
+    padding-left: 15px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.terms-content ul {
+    padding-right: 20px;
+}
+
+.terms-content .warning-text {
+    color: #d31414; /* استخدام اللون الذهبي للتحذير */
+}
+
+.terms-content .sub-list {
+    margin-top: 10px;
+}
+
+.modal-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* تصميم مربع الاختيار المخصص */
+.custom-checkbox-container {
+    display: block;
+    position: relative;
+    padding-right: 35px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+}
+.custom-checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 25px;
+    width: 25px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+.custom-checkbox-container:hover input ~ .checkmark {
+    background-color: #4A5568;
+}
+.custom-checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent-primary);
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.custom-checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+.custom-checkbox-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* تصميم زر المواصلة */
+.modal-button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--accent-primary);
+    color: white;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal-button:hover:not(:disabled) {
+    background-color: #2b6cb0;
+    transform: translateY(-2px);
+}
+
+/* تصميم الزر عندما يكون غير مفعل */
+.modal-button:disabled {
+    background-color: #4A5568;
+    cursor: not-allowed;
+    opacity: 0.6;
+}

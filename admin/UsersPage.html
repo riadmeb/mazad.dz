@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المستخدمين</title>
+    
+    <!-- Google Fonts: Cairo for Arabic UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- SweetAlert2 for beautiful alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="dashboard-style.css"> <!-- Reusing the main dashboard style -->
+    <link rel="stylesheet" href="user-management-style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- ================== Sidebar ================== -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-tachometer-alt logo-icon"></i>
+                <h1 class="logo-text">لوحة التحكم</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-link">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="UsersPage.html" class="nav-link active">
+                    <i class="fas fa-users nav-icon"></i>
+                    <span>إدارة المستخدمين</span>
+                </a>
+                <a href="auctions.html" class="nav-link">
+                    <i class="fas fa-gavel nav-icon"></i>
+                    <span>المزادات</span>
+                </a>
+                <a href="winners-list.html" class="nav-link">
+                    <i class="fas fa-trophy nav-icon"></i>
+                    <span>الفائزون</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="/images/default.png" alt="صورة المدير" id="profilePic">
+                    <div class="user-details">
+                        <span id="username">اسم المستخدم</span>
+                        <small>مدير النظام</small>
+                    </div>
+                    <button class="logout-btn" onclick="logout()" title="تسجيل الخروج">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ================== Main Content ================== -->
+        <main class="main-content">
+            <header class="main-header">
+                <h2>إدارة المستخدمين</h2>
+                <p>مراجعة طلبات التسجيل والموافقة عليها أو رفضها.</p>
+            </header>
+
+            <div class="user-management-grid">
+                <!-- Pending Users List -->
+                <div class="user-list-card" id="pendingList">
+                    <div class="list-header pending">
+                        <i class="fas fa-hourglass-half"></i>
+                        <h3>المستخدمون المعلقون</h3>
+                    </div>
+                    <ul class="user-list-items">
+                        <!-- User items will be populated by JavaScript -->
+                    </ul>
+                </div>
+
+                <!-- Approved Users List -->
+                <div class="user-list-card" id="approvedList">
+                    <div class="list-header approved">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>المستخدمون المقبولون</h3>
+                    </div>
+                    <ul class="user-list-items">
+                        <!-- User items will be populated by JavaScript -->
+                    </ul>
+                </div>
+
+                <!-- Rejected Users List -->
+                <div class="user-list-card" id="rejectedList">
+                    <div class="list-header rejected">
+                        <i class="fas fa-times-circle"></i>
+                        <h3>المستخدمون المرفوضون</h3>
+                    </div>
+                    <ul class="user-list-items">
+                        <!-- User items will be populated by JavaScript -->
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ✅ [FIX] Only the user-management script is needed here -->
+    <script src="user-management.js"></script>
+</body>
+</html>

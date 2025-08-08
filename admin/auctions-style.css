@@ -1,0 +1,311 @@
+
+/* Filter and Actions Bar */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.search-wrapper {
+    position: relative;
+    flex-grow: 1;
+}
+
+.search-wrapper i {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.filter-bar input,
+.filter-bar select {
+    width: 100%;
+    padding: 10px 15px;
+    padding-right: 40px; /* Space for the icon */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    background-color: var(--main-bg);
+}
+
+.filter-bar select {
+    padding-right: 15px;
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.add-new-btn {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-new-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+/* Auctions Container */
+.auctions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 25px;
+}
+
+.auction-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.auction-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+}
+
+.auction-image-container {
+    position: relative;
+    height: 200px;
+    background-color: #f0f0f0;
+}
+
+.auction-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.auction-status {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    backdrop-filter: blur(5px);
+}
+
+.status-ongoing { background-color: rgba(34, 197, 94, 0.7); } /* Green */
+.status-ended { background-color: rgba(239, 68, 68, 0.7); } /* Red */
+.status-not-started { background-color: rgba(245, 159, 11, 0.7); } /* Yellow */
+
+.auction-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.auction-content h3 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+    color: var(--text-primary);
+}
+
+.auction-meta {
+    display: flex;
+    gap: 15px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ✅ [الإضافة] أنماط قسم التفاصيل الإضافية */
+.extra-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+.auction-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.details-grid {
+    display: grid;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--main-bg);
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.detail-item i {
+    color: var(--primary-color);
+}
+.detail-item span {
+    color: var(--text-secondary);
+    margin-right: 5px;
+}
+
+/* ✅ [الإضافة] أنماط زر عرض المزيد */
+.toggle-details-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    padding: 8px;
+    margin: 15px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.toggle-details-btn:hover {
+    background-color: var(--main-bg);
+    color: var(--text-primary);
+}
+
+.toggle-details-btn i {
+    transition: transform 0.3s;
+}
+
+.auction-actions {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+    margin-top: auto;
+}
+
+.action-btn {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.edit-btn { background-color: #e0e7ff; color: #4338ca; }
+.delete-btn { background-color: #fee2e2; color: #b91c1c; }
+.edit-btn:hover { background-color: #c7d2fe; }
+.delete-btn:hover { background-color: #fecaca; }
+
+
+
+/* Modal Styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    position: relative;
+    animation: slideIn 0.3s;
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-btn:hover, .close-btn:focus { color: black; }
+
+#editAuctionForm .form-group { margin-bottom: 15px; }
+#editAuctionForm .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+#editAuctionForm label { font-weight: 500; margin-bottom: 5px; display: block; }
+#editAuctionForm input, #editAuctionForm textarea, #editAuctionForm select { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; }
+.image-preview-container { display: flex; flex-wrap: wrap; gap: 10px; background-color: #f9fafb; padding: 10px; border-radius: 6px; }
+.image-preview-container img { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; }
+.form-buttons { display: flex; gap: 10px; margin-top: 20px; }
+.save-btn, .cancel-btn { flex-grow: 1; padding: 12px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+.save-btn { background: var(--accent-gradient); color: white; }
+.cancel-btn { background-color: #e5e7eb; color: #4b5563; }
+
+/* Image Viewer Modal */
+.image-viewer .modal-content {
+    width: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+.image-viewer img { width: 100%; height: 100%; object-fit: contain; }
+.image-viewer .close-btn { color: white; font-size: 40px; }
+.prev, .next { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -50px; color: white; font-weight: bold; font-size: 20px; transition: 0.6s ease; user-select: none; background-color: rgba(0,0,0,0.4); }
+.prev { right: 15px; border-radius: 3px 0 0 3px; }
+.next { left: 15px; border-radius: 0 3px 3px 0; }
+.prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+@keyframes slideIn { from {transform: translateY(-50px);} to {transform: translateY(0);} }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل حساب جديد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="index.css"> <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+<body dir="rtl">
+    <header>
+        <img src="images/icon-mazad.png" alt="شعار الموقع" class="logo">
+        <nav>
+            <a href="index.html" class="nav-button">الرئيسية</a>
+            <a href="login.html" class="nav-button">تسجيل الدخول</a>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <div class="register-container">
+            <h2>إنشاء حساب جديد</h2>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="firstName">الاسم</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="input-group">
+                    <label for="lastName">اللقب</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="birthDate">تاريخ الميلاد</label>
+                    <input type="date" id="birthDate" name="birthDate" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">إعادة كتابة كلمة المرور</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <div class="input-group">
+                    <label for="phoneNumber">رقم الهاتف</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber">
+                </div>
+                <div class="input-group">
+                    <label for="birthPlace">مكان الميلاد</label>
+                    <input type="text" id="birthPlace" name="birthPlace" required>
+                </div>
+                <div class="input-group">
+                    <label for="wilaya">ولاية الإقامة</label>
+                    <input type="text" id="wilaya" name="wilaya" required>
+                </div>
+                <div class="input-group">
+                    <label for="commune">بلدية الإقامة</label>
+                    <input type="text" id="commune" name="commune" required>
+                </div>
+                <div class="input-group">
+                    <label for="profilePicture">صورة شخصية (اختياري)</label>
+                    <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+                </div>
+                <img id="profilePicturePreview" src="#" alt="معاينة الصورة" class="hidden">
+                <button type="submit">إنشاء الحساب</button>
+            </form>
+            <p class="login-link">لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+    <script src="register.js"></script>
+</body>
+</html>
