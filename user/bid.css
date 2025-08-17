@@ -829,82 +829,56 @@ body {
 }
 
 
-/* هذا الكود يستهدف صناديق الأرقام عندما تكون الحاوية الرئيسية
-   لديها كلاس "countdown-ending" الذي نضيفه بواسطة JavaScript */
-
-.countdown-ending .timer-box .number {
-    background: linear-gradient(145deg, #B71C1C, #D32F2F); /* تدرج أحمر داكن */
-    animation: pulse-red 1.2s infinite; /* إضافة تأثير نبض */
-}
-/* حركة النبض للفت الانتباه */
-@keyframes pulse-red {
-    0% { transform: scale(1); box-shadow: 0 5px 10px rgba(211, 47, 47, 0.2); }
-    50% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(211, 47, 47, 0.4); }
-    100% { transform: scale(1); box-shadow: 0 5px 10px rgba(211, 47, 47, 0.2); }
-}
-
 /* =================================================================
- * الأنماط الأساسية المعتمدة على متغيرات التصميم
+ * الأنماط العامة والتصميم الفاتح
  * ================================================================= */
-:root {
-    --bg-primary: #1a202c;
-    --bg-secondary: #2d3748;
-    --accent-primary: #3182ce;
-    --accent-secondary: #f6e05e;
-    --text-primary: #E2E8F0;
-    --text-secondary: #A0AEC0;
-    --border-color: #4A5568;
-}
-
 body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: 'Tajawal', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* خلفية رمادية فاتحة للصفحة */
     margin: 0;
     padding: 0;
+    direction: rtl;
+    color: #333; /* لون الخط الأساسي */
 }
 
-/* =================================================================
- * تصميم حاويات الصفحة الرئيسية
- * ================================================================= */
+/* حاوية الصفحة الرئيسية */
 .auction-page-wrapper {
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 30px auto;
     padding: 0 20px;
 }
 
 .auction-grid-container {
     display: grid;
-    grid-template-columns: 1fr 400px; /* عمود للصور وعمود للتحكم */
-    gap: 40px;
+    grid-template-columns: 1fr 420px; /* عمود للصور وعمود للتحكم */
+    gap: 30px;
     align-items: flex-start;
 }
 
-/* --- العمود الأيمن: معرض الصور --- */
+/* =================================================================
+ * العمود الأيمن: معرض الصور
+ * ================================================================= */
 .auction-gallery-container {
     position: sticky;
     top: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* --- تم إصلاح مشكلة الصورة هنا --- */
 .main-image-wrapper {
     width: 100%;
-    background-color: var(--bg-secondary);
-    border-radius: 16px;
-    overflow: hidden;
     margin-bottom: 15px;
-    /* تمت إزالة الارتفاع الثابت للسماح للصورة بالتحجيم الطبيعي */
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 #main-auction-image {
     width: 100%;
-    height: auto; /* مهم جدًا لجعل الصورة متجاوبة */
-    display: block; /* لإزالة أي مسافات إضافية أسفل الصورة */
+    height: auto; /* يجعل الصورة متجاوبة */
+    display: block;
     cursor: pointer;
-    transition: transform 0.3s ease;
-}
-#main-auction-image:hover {
-    transform: scale(1.05);
 }
 
 .thumbnail-wrapper {
@@ -919,32 +893,33 @@ body {
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
-    border: 2px solid var(--border-color);
+    border: 2px solid #ddd;
     transition: border-color 0.3s ease;
 }
 
 .thumbnail-wrapper img:hover,
 .thumbnail-wrapper img.active {
-    border-color: var(--accent-primary);
+    border-color: #007bff;
 }
 
-
-/* --- العمود الأيسر: لوحة التحكم --- */
+/* =================================================================
+ * العمود الأيسر: لوحة التحكم
+ * ================================================================= */
 .auction-control-panel {
-    background-color: var(--bg-secondary);
-    border-radius: 16px;
+    background-color: #fff;
+    border-radius: 12px;
     padding: 25px;
-    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .panel-title {
     font-family: 'Cairo', sans-serif;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 25px;
     padding-bottom: 15px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #e9ecef;
 }
 
 .panel-section {
@@ -954,112 +929,96 @@ body {
 /* قسم السعر */
 .price-label {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: #6c757d;
     margin-bottom: 5px;
-    text-transform: uppercase;
 }
 .price-value {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 700;
-    color: var(--accent-secondary);
+    color: #28a745; /* لون أخضر للسعر */
     margin: 0;
-    text-shadow: 0 0 15px rgba(246, 224, 94, 0.4);
 }
 
 /* قسم المؤقت */
 .timer-label {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: #6c757d;
     margin-bottom: 10px;
-    text-transform: uppercase;
 }
-.countdown-container {
-    display: flex;
-    gap: 10px;
+#countdown-timer {
+     display: flex;
+     justify-content: space-between;
+     flex-direction: row-reverse;
+     gap: 10px;
+     direction: ltr;
 }
-.countdown-container .timer-box {
-    background-color: var(--bg-primary);
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    flex-grow: 1;
+.timer-box {
+     text-align: center;
 }
-.countdown-container .number {
-    font-size: 24px;
-    font-weight: bold;
-    font-family: 'Cairo', sans-serif;
+.timer-box .number {
+     font-size: 2em;
+     font-weight: bold;
+     color: #fff;
+     background: #343a40; /* خلفية داكنة للأرقام */
+     padding: 10px 15px;
+     border-radius: 5px;
+     min-width: 50px;
+     display: inline-block;
 }
-.countdown-container .label {
-    font-size: 12px;
-    color: var(--text-secondary);
+.timer-box .label {
+     font-size: 0.8em;
+     color: #6c757d;
+     margin-top: 5px;
 }
 .countdown-ending .timer-box .number {
-    background: linear-gradient(145deg, #B71C1C, #D32F2F);
-    animation: pulse-red 1.2s infinite;
-}
-
-@keyframes pulse-red {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+     background: #dc3545; /* خلفية حمراء عند اقتراب النهاية */
 }
 
 /* قسم المزايدة */
 .bid-section input {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     border-radius: 8px;
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    border: 1px solid #ccc;
     font-size: 16px;
     margin-bottom: 10px;
     box-sizing: border-box;
+    text-align: center;
 }
 .bid-section .bid-button {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     font-size: 18px;
     font-weight: bold;
-    background-color: var(--accent-primary);
+    background-color: #007bff; /* أزرق */
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    transition: background-color 0.3s;
 }
 .bid-section .bid-button:hover {
-    background-color: #2b6cb0;
-    transform: translateY(-2px);
+    background-color: #0056b3;
 }
 
-/* قسم التفاصيل القابل للطي */
+/* قسم التفاصيل */
 .details-section summary {
     cursor: pointer;
     font-weight: bold;
-    color: var(--text-primary);
-    padding: 5px;
+    color: #007bff;
 }
 .details-grid {
     margin-top: 15px;
     font-size: 14px;
-    color: var(--text-secondary);
-    padding-right: 10px;
-    border-right: 2px solid var(--border-color);
+    color: #333;
 }
 .details-grid p {
     margin: 8px 0;
 }
-.details-grid strong {
-    color: var(--text-primary);
-}
 
-
-/* --- تم إرجاع تصميم جدول المزايدات إلى شكله الأصلي --- */
+/* =================================================================
+ * قسم سجل المزايدات (بالتصميم الأصلي الفاتح)
+ * ================================================================= */
 .bids-history-container {
     background-color: #ffffff;
     padding: 25px;
@@ -1076,7 +1035,7 @@ body {
     padding-bottom: 10px;
     text-align: center;
     font-family: 'Cairo', sans-serif;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 #bids-table-container table {
@@ -1093,117 +1052,54 @@ body {
 #bids-table-container thead tr {
     background-color: #f8f9fa;
     color: #495057;
-    font-size: 0.9em;
     font-weight: 600;
-}
-
-#bids-table-container tbody tr:nth-child(even) {
-    background-color: #fdfdff;
 }
 
 #bids-table-container tbody tr:hover {
     background-color: #f1f3f5;
 }
 
+/* تنسيق أعلى مزايدة باللون الأخضر الأصلي */
 #bids-table-container .top-bid {
     background-color: #d4edda;
     font-weight: bold;
     color: #155724;
 }
-/* --- نهاية كود الجدول الأصلي --- */
-
-
-/* نافذة تكبير الصور */
-.image-modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.9);
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-}
-.modal-image-content {
-    max-width: 85vw;
-    max-height: 85vh;
-    border-radius: 8px;
-}
-
-.close-button {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
 /* =================================================================
- * =================================================================
- * * هذا هو الجزء المهم: تصميم الموقع للشاشات الصغيرة (الهواتف)
- * * =================================================================
+ * التصميم المتجاوب (للشاشات الصغيرة والهواتف)
  * ================================================================= */
 @media (max-width: 992px) {
 
-    /* --- تحويل التصميم إلى عمود واحد --- */
+    /* تحويل التصميم إلى عمود واحد */
     .auction-grid-container {
         grid-template-columns: 1fr; /* عمود واحد فقط */
-        gap: 25px; /* تقليل المسافة بين العناصر */
+        gap: 25px;
     }
 
-    /* --- تعديل معرض الصور --- */
+    /* إزالة التثبيت اللاصق للصور */
     .auction-gallery-container {
-        position: static; /* إزالة التثبيت اللاصق */
-    }
-
-    /* --- تعديل لوحة التحكم --- */
-    .auction-control-panel {
-        padding: 20px;
+        position: static;
     }
 
     .panel-title {
-        font-size: 24px; /* تصغير حجم العنوان */
+        font-size: 22px;
     }
 
     .price-value {
-        font-size: 36px; /* تصغير حجم السعر */
-    }
-
-    .countdown-container .number {
-        font-size: 20px; /* تصغير أرقام المؤقت */
-    }
-
-    .countdown-container .label {
-        font-size: 10px; /* تصغير نصوص المؤقت */
-    }
-
-    /* --- تعديل قسم سجل المزايدات --- */
-    .bids-history-container {
-        padding: 20px;
+        font-size: 34px;
     }
 }
 
-
 @media (max-width: 480px) {
-    /* تعديلات إضافية للشاشات الصغيرة جدًا */
     .auction-page-wrapper {
         padding: 0 10px;
         margin: 20px auto;
     }
 
-    .panel-title {
-        font-size: 20px;
-    }
-
-    .price-value {
-        font-size: 32px;
-    }
-
-    #bids-table-container th, #bids-table-container td {
-        padding: 8px 5px;
-        font-size: 14px;
+    .timer-box .number {
+        font-size: 1.5em;
+        padding: 8px 10px;
+        min-width: 40px;
     }
 }
