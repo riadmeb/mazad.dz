@@ -1128,3 +1128,539 @@ nav {
     cursor: not-allowed;
     opacity: 0.6;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;500&display=swap');
+
+/* =================================================================
+ * الخطوة 1: تعريف لوحة الألوان الجديدة كمتغيرات
+ * ================================================================= */
+:root {
+    --bg-primary: #1a202c;       /* رمادي داكن مائل للزرقة (الخلفية الرئيسية) */
+    --bg-secondary: #2d3748;    /* درجة أفتح (خلفية البطاقات والهيدر) */
+    --accent-primary: #3182ce;    /* أزرق ساطع (للأزرار والتفاعل) */
+    --accent-secondary: #f6e05e;  /* ذهبي (للأسعار والعناصر الهامة) */
+    --text-primary: #E2E8F0;      /* أبيض مائل للرمادي (للنصوص الرئيسية) */
+    --text-secondary: #A0AEC0;   /* رمادي فاتح (للنصوص الفرعية) */
+    --border-color: #4A5568;      /* لون الحدود والفواصل */
+}
+
+/* =================================================================
+ * الخطوة 2: تطبيق الأنماط الأساسية
+ * ================================================================= */
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6, button, .nav-button {
+    font-family: 'Cairo', sans-serif;
+}
+
+/* =================================================================
+ * رأس الصفحة (Header)
+ * ================================================================= */
+
+header {
+    background-color: var(--bg-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    flex-wrap: wrap; /* السماح للعناصر بالالتفاف */
+}
+
+.logo {
+    height: 70px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-button {
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.auction-button {
+    background-color: var(--accent-primary);
+    color: white;
+    font-weight: bold;
+}
+.auction-button:hover {
+    background-color: #2b6cb0;
+}
+
+.nav-button:hover {
+    color: var(--text-primary);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.user-icon {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+    transition: border-color 0.3s;
+}
+
+.user-icon:hover {
+    border-color: var(--accent-primary);
+}
+
+.user-icon-container {
+    position: relative;
+}
+
+.notification-icon {
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+}
+
+.notification-icon:hover {
+    color: var(--text-primary);
+}
+
+.dropdown-menu, .notifications-menu {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    min-width: 180px;
+    overflow: hidden;
+}
+
+.dropdown-menu a, .notifications-menu p {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--accent-primary);
+}
+
+.dropdown-menu .logout {
+    color: #E53E3E;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =================================================================
+ * منطقة البحث
+ * ================================================================= */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 25px auto;
+    border: 1px solid var(--border-color);
+}
+
+.search-container input,
+.search-container select {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+.search-container select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A0AEC0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+    padding-left: 40px;
+}
+
+.search-container button {
+    padding: 12px 25px;
+    background-color: var(--accent-primary);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #2b6cb0;
+}
+
+/* =================================================================
+ * منطقة المزادات والبطاقات
+ * ================================================================= */
+.auctions-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 15px;
+}
+
+.auctions-container h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+    color: var(--text-primary);
+}
+
+.auctions-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.auction-card {
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auction-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(49, 130, 206, 0.2);
+}
+
+.auction-card-top {
+    position: relative;
+    height: 190px;
+}
+
+.auction-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.auction-card:hover .auction-card-image {
+    transform: scale(1.05);
+}
+
+.countdown-timer {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--accent-secondary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    z-index: 3;
+}
+
+.auction-card-bottom {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.auction-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.auction-card-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.auction-card-tag.primary {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+.auction-card-tag.secondary {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.auction-card-number {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: bold;
+}
+
+.auction-card-price-label {
+    font-size: 16px; /* تصغير حجم الخط */
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.auction-card-price {
+    font-family: 'Cairo', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+    background: linear-gradient(to bottom, #3e9b3e, var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(246, 224, 94, 0.5);
+}
+
+.auction-card-details {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    font-size: 13px;
+    color: #CBD5E0;
+}
+
+.bid-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: auto;
+}
+
+.bid-button:hover {
+    background-color: #2b6cb0;
+}
+
+/* =================================================================
+ * منطقة الإعلانات
+ * ================================================================= */
+.ad-container {
+    position: relative;
+    width: 95%;
+    max-width: 1200px;
+    height: 350px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ad-slide {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.ad-slide.active {
+    display: block;
+}
+
+.ad-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ad-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    color: white;
+    text-align: right;
+}
+
+.ad-overlay h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.ad-cta-button {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.ad-cta-button:hover {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    transform: scale(1.05);
+}
+
+.ad-container .prev, 
+.ad-container .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* =================================================================
+ * =================================================================
+ * * هذا هو الجزء المهم: تصميم الموقع للشاشات الصغيرة (الهواتف)
+ * كل القواعد هنا تعمل فقط إذا كان عرض الشاشة 768 بكسل أو أقل
+ * * =================================================================
+ * ================================================================= */
+
+/* --- للشاشات المتوسطة (مثل الأجهزة اللوحية) --- */
+@media (max-width: 992px) {
+    .auctions-list {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+
+/* --- للشاشات الصغيرة (مثل الهواتف) --- */
+@media (max-width: 768px) {
+    
+    /* --- تعديلات الهيدر --- */
+    header {
+        flex-direction: column; /* جعل أقسام الهيدر عمودية */
+        padding: 10px 15px; /* تقليل الحشو */
+    }
+
+    .logo {
+        height: 50px; /* تصغير الشعار */
+        margin-bottom: 15px; /* إضافة مسافة أسفل الشعار */
+    }
+    
+    .nav-center, nav {
+        flex-direction: row; /* الأزرار نفسها تبقى في صف */
+        flex-wrap: wrap; /* السماح للأزرار بالنزول لسطر جديد إذا لزم الأمر */
+        justify-content: center; /* توسيط الأزرار */
+        width: 100%;
+        gap: 10px; /* تقليل المسافة بين الأزرار */
+    }
+    
+    /* --- تعديلات منطقة البحث --- */
+    .search-container {
+        flex-direction: column; /* ترتيب العناصر بشكل عمودي */
+        align-items: stretch; /* جعل العناصر تمتد بعرض الحاوية */
+        gap: 10px; /* إضافة مسافة بين العناصر */
+        padding: 15px;
+        margin: 15px;
+        width: auto;
+    }
+
+    /* --- تعديلات منطقة الإعلانات --- */
+    .ad-container {
+        height: 220px; /* تقليل الارتفاع بشكل كبير */
+        margin: 20px auto; /* تقليل الهوامش */
+    }
+
+    .ad-overlay {
+        padding: 20px; /* تقليل الحشو الداخلي */
+    }
+    
+    .ad-overlay h2 {
+        font-size: 24px; /* تصغير حجم العنوان بشكل كبير */
+        margin-bottom: 10px;
+    }
+
+    .ad-cta-button {
+        padding: 8px 18px; /* تصغير الزر */
+        font-size: 14px;
+    }
+
+    /* --- تعديلات بطاقات المزادات --- */
+    .auctions-container h2 {
+        font-size: 24px; /* تصغير عنوان "المزادات النشطة" */
+    }
+    
+    .auction-card-price {
+        font-size: 32px; /* تصغير حجم خط السعر */
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+}
